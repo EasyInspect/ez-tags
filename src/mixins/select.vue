@@ -1,13 +1,36 @@
 
 <template>
 
-
+    <div v-on:click.stop="focusInput" class="ez-tag">
+        <div v-on:keyup.enter="selectTagFromOption" v-on:keydown.down="nextOption" v-on:keydown.up="prevOption" class="ez-tag__input-container">
+            <div class="ez-tag__items">
+                <tag-selected v-for="tag in selectedTags" v-on:unselect="unselectTag" :tag="tag"></tag-selected>
+                <input v-el:search v-on:keydown.8="unselectLastTag" v-model="input" tabindex="0" type="text" class="ez-tag__input" :placeholder="placeholder">
+            </div>
+            <div v-if="selectedTags.length" class="ez-tag__clear-items">
+                <span v-on:click="clearSelected" class="fa fa-remove"></span>
+            </div>
+        </div>
+        <div v-el:dropdown class="ez-tag__dropdown">
+            <div class="ez-tag__option-container">
+                <tag-option v-for="tag in filteredTags" v-on:click="selectTag(tag)" :tag="tag" track-by="$index" :class="{'ez-tag__option--active': activeOptionIndex == $index}"></tag-option>
+            </div>
+            <div v-on:click.stop="closeDropdown" class="ez-tag__close">
+                Close
+            </div>
+        </div>
+    </div>
 
 </template>
 
 <script>
 
+    import TagOption from './option.vue'
+    import TagSelected from './selected.vue'
+
     export default {
+
+        components: { TagOption, TagSelected },
 
         data() {
 

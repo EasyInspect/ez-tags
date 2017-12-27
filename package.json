@@ -1,5 +1,5 @@
 {
-  "name": "ez-tags",
+  "name": "@easyinspect/ez-tags",
   "version": "1.0.0",
   "description": "Tag selection",
   "main": "dist/index.js",
@@ -7,5 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "EasyInspect ApS",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EasyInspect/ez-tags"
+  }
 }

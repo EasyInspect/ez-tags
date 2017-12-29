@@ -15,13 +15,165 @@
             <div class="ez-tag__option-container">
                 <tag-option v-for="tag in filteredTags" v-on:click="selectTag(tag)" :tag="tag" track-by="$index" :class="{'ez-tag__option--active': activeOptionIndex == $index}"></tag-option>
             </div>
-            <div v-on:click.stop="closeDropdown" class="ez-tag__close">
+            <div v-if="filteredTags.length" v-on:click.stop="closeDropdown" class="ez-tag__close">
                 Close
             </div>
         </div>
     </div>
 
 </template>
+
+<style lang="sass-loader">
+
+    .ez-tag {
+        border-radius: 3px;
+        position: relative;
+    }
+
+    .ez-tag__pointer {
+         margin: 5px 10px 10px 10px;
+         cursor: pointer;
+         opacity: 0.6;
+         transition: all 0.150s;
+     }
+
+    .ez-tag__display{
+         cursor: pointer;
+     }
+
+    .ez-tag__placeholder {
+         opacity: 0.5;
+         margin: 5px 10px 10px 10px;
+     }
+
+    .ez-tag__input-container {
+         border: 1px solid #dedede;
+         padding: 10px 10px 5px 10px;
+         display: flex;
+     }
+
+    .ez-tag__display-container {
+        padding: 5px 5px 0 5px;
+        display: flex;
+    }
+
+    .ez-tag__display-container:hover{
+        opacity: 1;
+    }
+
+    .ez-tag__items{
+         flex-grow: 1;
+     }
+
+    .ez-tag__clear-items {
+        background: white;
+    }
+
+    .ez-tag__clear-items span {
+        margin-top: 5px;
+        padding: 5px;
+        cursor: pointer;
+        color: grey;
+    }
+
+    .ez-tag__clear-items span:hover{
+        color: black;
+    }
+
+    .ez-tag__item {
+         border-radius: 10px;
+         border: 1px solid #dedede;
+         padding: 5px 5px 5px 10px;
+         display: inline-block;
+         margin-right: 5px;
+         margin-bottom: 5px;
+    }
+
+    .ez-tag__item-text {
+         display: inline-block;
+         vertical-align: bottom;
+    }
+
+    .ez-tag__item-cross {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 10px;
+        width: 2em;
+        height: 2em;
+        padding: 2px;
+        border-radius: 10px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.150s;
+        opacity: 0.6;
+    }
+
+    .ez-tag__item-cross span {
+        vertical-align: baseline;
+    }
+
+    .ez-tag__item-cross:hover, .ez-tag__item-cross--active {
+        opacity: 1;
+    }
+
+    .ez-tag__input {
+        border: none;
+        margin: 5px 5px 10px 5px;
+        width: 100%;
+    }
+    .ez-tag__input:focus {
+        outline: none;
+    }
+
+    .ez-tag__dropdown {
+        position: absolute;
+        width: 100%;
+        border: 1px solid #dedede;
+        border-top: none;
+        background: white;
+        display: none;
+     }
+
+    .ez-tag__option-container {
+        overflow-y: auto;
+        max-height: 300px;
+    }
+
+    .ez-tag__close {
+        padding: 10px;
+        text-align: center;
+        border-top: 1px solid #dedede;
+        cursor: pointer;
+        transition: all 0.150s;
+    }
+
+    .ez-tag__close:hover {
+        background: rgba(240, 240, 240, 1);
+    }
+
+    .ez-tag__option {
+        padding: 10px;
+        cursor: pointer;
+        transition: all 0.100s;
+    }
+
+    .ez-tag__option:nth-child(even) {
+         background: rgba(227, 227, 227, 0.1);
+     }
+
+    .ez-tag__option:hover, .ez-tag__option--active {
+        background: #3498db !important;
+        color: white;
+    }
+
+    .ez-tag__footer{
+         padding: 5px 10px;
+         text-align: right;
+         border-top: 1px solid #dedede;
+    }
+
+</style>
 
 <script>
 
@@ -158,7 +310,6 @@
                 const target = $(e.target);
 
                 if (target.is(search)) {
-
 
                     this.openDropdown();
 

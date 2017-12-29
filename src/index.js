@@ -1,2 +1,10 @@
 
-export {default as EzTags} from './mixins/tags.vue'
+import tags from './mixins/tags.vue'
+import option from './mixins/option.vue'
+import selected from './mixins/selected.vue'
+
+export {
+    tags as EzTags,
+    option as EzTagsOption,
+    selected as EzTagsSelected
+}

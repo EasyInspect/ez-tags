@@ -1,19 +1,25 @@
 
-const path = require('path');
+const webpack   = require('webpack');
+const path      = require('path');
 
 module.exports = {
-    entry: {
-        tags: "./src/mixins/tags.vue",
-        selected: "./src/mixins/selected.vue",
-        option: "./src/mixins/option.vue"
-    },
+    entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: "[name].js"
+        filename: "index.js",
+        library:'ez-tags',
+        libraryTarget: 'umd'
     },
     module: {
         rules: [
-            { test: /\.vue$/, use: 'vue-loader' }
+            {
+                test: /\.vue$/,
+                use: 'vue-loader'
+            },
+            {
+                test: /.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
+                use: "url-loader?limit=100000"
+            }
         ]
     },
     watch: true,

@@ -1,6 +1,6 @@
 {
   "name": "@easyinspect/ez-tags",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Tag selection",
   "main": "dist/index.js",
   "author": "EasyInspect ApS",
@@ -12,8 +12,7 @@
     "type": "git",
     "url": "https://github.com/EasyInspect/ez-tags"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",

@@ -304,33 +304,40 @@
 
         ready() {
 
-            $(document).focusin(e => {
-
-                const search = $(this.$els.search);
-                const target = $(e.target);
-
-                if (target.is(search)) {
-
-                    this.openDropdown();
-
-                } else {
-
-                    this.closeDropdown();
-
-                }
-
-            });
-
-            $(document).click(e => {
-
-                this.closeDropdown();
-
-            });
+            this.addFocusListeners();
 
         },
 
         methods: {
 
+            addFocusListeners() {
+
+                document.addEventListener('focusin', e => {
+
+                    console.log(e);
+
+                    const search = this.$els.search;
+                    const target = e.target;
+
+                    if (target == search) {
+
+                        this.openDropdown();
+
+                    } else {
+
+                        this.closeDropdown();
+
+                    }
+
+                });
+
+                document.addEventListener('click', e => {
+
+                    this.closeDropdown();
+
+                });
+
+            },
             stringifyTagValue(tag) {
 
                 return Object.assign({}, tag, {
@@ -340,13 +347,13 @@
             },
             closeDropdown(e) {
 
-                const dropdown = $(this.$els.dropdown);
+                const dropdown = this.$els.dropdown;
 
-                dropdown.hide();
+                dropdown.style.display = 'none';
 
                 this.$nextTick(() => {
 
-                    if (dropdown.is(':hidden')) {
+                    if (dropdown.style.display == 'none') {
 
                         this.resetOptionIndex();
 
@@ -357,13 +364,13 @@
             },
             openDropdown() {
 
-                const dropdown = $(this.$els.dropdown);
+                const dropdown = this.$els.dropdown;
 
-                dropdown.show();
+                dropdown.style.display = 'block';
 
                 this.$nextTick(() => {
 
-                    if (dropdown.is(':visible')) {
+                    if (dropdown.style.display != 'none') {
 
                         this.checkOptionIsInView()
 
@@ -379,8 +386,8 @@
             },
             selectOptionFromIndex(index) {
 
-                const options = $('.ez-tag__option');
-                const option = $(options[index]);
+                const options   = document.getElementsByClassName('ez-tag__option');
+                const option    = options[index];
 
                 if (option) {
 
@@ -391,7 +398,7 @@
             },
             checkOptionIsInView(option) {
 
-                const activeOption = $('.ez-tag__option--active');
+                const activeOption = document.getElementsByClassName('ez-tag__option--active')[0];
 
                 option = option || activeOption;
 

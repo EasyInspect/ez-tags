@@ -801,30 +801,36 @@ exports.default = {
     },
 
     ready: function ready() {
-        var _this5 = this;
 
-        $(document).focusin(function (e) {
-
-            var search = $(_this5.$els.search);
-            var target = $(e.target);
-
-            if (target.is(search)) {
-
-                _this5.openDropdown();
-            } else {
-
-                _this5.closeDropdown();
-            }
-        });
-
-        $(document).click(function (e) {
-
-            _this5.closeDropdown();
-        });
+        this.addFocusListeners();
     },
 
 
     methods: {
+        addFocusListeners: function addFocusListeners() {
+            var _this5 = this;
+
+            document.addEventListener('focusin', function (e) {
+
+                console.log(e);
+
+                var search = _this5.$els.search;
+                var target = e.target;
+
+                if (target == search) {
+
+                    _this5.openDropdown();
+                } else {
+
+                    _this5.closeDropdown();
+                }
+            });
+
+            document.addEventListener('click', function (e) {
+
+                _this5.closeDropdown();
+            });
+        },
         stringifyTagValue: function stringifyTagValue(tag) {
 
             return (0, _assign2.default)({}, tag, {
@@ -834,13 +840,13 @@ exports.default = {
         closeDropdown: function closeDropdown(e) {
             var _this6 = this;
 
-            var dropdown = $(this.$els.dropdown);
+            var dropdown = this.$els.dropdown;
 
-            dropdown.hide();
+            dropdown.style.display = 'none';
 
             this.$nextTick(function () {
 
-                if (dropdown.is(':hidden')) {
+                if (dropdown.style.display == 'none') {
 
                     _this6.resetOptionIndex();
                 }
@@ -849,13 +855,13 @@ exports.default = {
         openDropdown: function openDropdown() {
             var _this7 = this;
 
-            var dropdown = $(this.$els.dropdown);
+            var dropdown = this.$els.dropdown;
 
-            dropdown.show();
+            dropdown.style.display = 'block';
 
             this.$nextTick(function () {
 
-                if (dropdown.is(':visible')) {
+                if (dropdown.style.display != 'none') {
 
                     _this7.checkOptionIsInView();
                 }
@@ -867,8 +873,8 @@ exports.default = {
         },
         selectOptionFromIndex: function selectOptionFromIndex(index) {
 
-            var options = $('.ez-tag__option');
-            var option = $(options[index]);
+            var options = document.getElementsByClassName('ez-tag__option');
+            var option = options[index];
 
             if (option) {
 
@@ -877,7 +883,7 @@ exports.default = {
         },
         checkOptionIsInView: function checkOptionIsInView(option) {
 
-            var activeOption = $('.ez-tag__option--active');
+            var activeOption = document.getElementsByClassName('ez-tag__option--active')[0];
 
             option = option || activeOption;
 

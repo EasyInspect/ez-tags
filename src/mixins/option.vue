@@ -31,6 +31,10 @@
 
                     return `"${this.tag.value} is already selected"`;
 
+                } else if (this.tag.invalid) {
+
+                    return `No results matches "${this.tag.value}"`;
+
                 } else {
 
                     return this.tag.value;

@@ -314,7 +314,7 @@ exports = module.exports = __webpack_require__(15)(undefined);
 
 
 // module
-exports.push([module.i, ".ez-tag {\n  border-radius: 3px;\n  position: relative; }\n\n.ez-tag__pointer {\n  margin: 5px 10px 10px 10px;\n  cursor: pointer;\n  opacity: 0.6;\n  transition: all 0.150s; }\n\n.ez-tag__display {\n  cursor: pointer; }\n\n.ez-tag__placeholder {\n  opacity: 0.5;\n  margin: 5px 10px 10px 10px; }\n\n.ez-tag__input-container {\n  border: 1px solid #dedede;\n  padding: 10px 10px 5px 10px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n\n.ez-tag__display-container {\n  padding: 5px 5px 0 5px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n\n.ez-tag__display-container:hover {\n  opacity: 1; }\n\n.ez-tag__items {\n  -webkit-box-flex: 1;\n      -ms-flex-positive: 1;\n          flex-grow: 1; }\n\n.ez-tag__clear-items {\n  background: white; }\n\n.ez-tag__clear-items span {\n  margin-top: 5px;\n  padding: 5px;\n  cursor: pointer;\n  color: grey; }\n\n.ez-tag__clear-items span:hover {\n  color: black; }\n\n.ez-tag__item {\n  border-radius: 10px;\n  border: 1px solid #dedede;\n  padding: 5px 5px 5px 10px;\n  display: inline-block;\n  margin-right: 5px;\n  margin-bottom: 5px; }\n\n.ez-tag__item-text {\n  display: inline-block;\n  vertical-align: bottom; }\n\n.ez-tag__item-cross {\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  font-size: 10px;\n  width: 2em;\n  height: 2em;\n  padding: 2px;\n  border-radius: 10px;\n  text-align: center;\n  cursor: pointer;\n  transition: all 0.150s;\n  opacity: 0.6; }\n\n.ez-tag__item-cross span {\n  vertical-align: baseline; }\n\n.ez-tag__item-cross:hover, .ez-tag__item-cross--active {\n  opacity: 1; }\n\n.ez-tag__input {\n  border: none;\n  margin: 5px 5px 10px 5px;\n  width: 100%; }\n\n.ez-tag__input:focus {\n  outline: none; }\n\n.ez-tag__dropdown {\n  position: absolute;\n  width: 100%;\n  border: 1px solid #dedede;\n  border-top: none;\n  background: white;\n  display: none; }\n\n.ez-tag__option-container {\n  overflow-y: auto;\n  max-height: 300px; }\n\n.ez-tag__close {\n  padding: 10px;\n  text-align: center;\n  border-top: 1px solid #dedede;\n  cursor: pointer;\n  transition: all 0.150s; }\n\n.ez-tag__close:hover {\n  background: #f0f0f0; }\n\n.ez-tag__option {\n  padding: 10px;\n  cursor: pointer;\n  transition: all 0.100s; }\n\n.ez-tag__option:nth-child(even) {\n  background: rgba(227, 227, 227, 0.1); }\n\n.ez-tag__option:hover, .ez-tag__option--active {\n  background: #3498db !important;\n  color: white; }\n\n.ez-tag__footer {\n  padding: 5px 10px;\n  text-align: right;\n  border-top: 1px solid #dedede; }\n", ""]);
+exports.push([module.i, ".ez-tag {\n  border-radius: 3px;\n  position: relative;\n  box-sizing: border-box; }\n\n.ez-tag__pointer {\n  margin: 5px 10px 10px 10px;\n  cursor: pointer;\n  opacity: 0.6;\n  transition: all 0.150s; }\n\n.ez-tag__display {\n  cursor: pointer; }\n\n.ez-tag__placeholder {\n  opacity: 0.5;\n  margin: 5px 10px 10px 10px; }\n\n.ez-tag__input-container {\n  border: 1px solid #dedede;\n  padding: 10px 10px 5px 10px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n\n.ez-tag__display-container {\n  padding: 5px 5px 0 5px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n\n.ez-tag__display-container:hover {\n  opacity: 1; }\n\n.ez-tag__items {\n  -webkit-box-flex: 1;\n      -ms-flex-positive: 1;\n          flex-grow: 1; }\n\n.ez-tag__clear-items {\n  background: white; }\n\n.ez-tag__clear-items span {\n  margin-top: 5px;\n  padding: 5px;\n  cursor: pointer;\n  color: grey; }\n\n.ez-tag__clear-items span:hover {\n  color: black; }\n\n.ez-tag__item {\n  border-radius: 10px;\n  border: 1px solid #dedede;\n  padding: 5px 20px 5px 10px;\n  display: inline-block;\n  margin-right: 5px;\n  margin-bottom: 5px;\n  position: relative; }\n\n.ez-tag__item-text {\n  display: inline-block;\n  vertical-align: bottom; }\n\n.ez-tag__item-cross {\n  position: absolute;\n  right: 0;\n  top: 5px;\n  font-size: 5px;\n  width: 3em;\n  height: 3em;\n  opacity: 0.5;\n  cursor: pointer; }\n\n.ez-tag__item-cross-line {\n  font-size: inherit;\n  position: absolute;\n  content: ' ';\n  height: 2em;\n  width: 2px;\n  background-color: #333;\n  top: 0.75em;\n  left: 1em;\n  cursor: pointer; }\n\n.ez-tag__item-cross-line:nth-child(odd) {\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg); }\n\n.ez-tag__item-cross-line:nth-child(even) {\n  -webkit-transform: rotate(-45deg);\n          transform: rotate(-45deg); }\n\n.ez-tag__item-cross:hover, .ez-tag__item-cross--active {\n  opacity: 1; }\n\n.ez-tag__input {\n  border: none;\n  padding: 5px 5px 10px 5px; }\n\n.ez-tag__input:focus {\n  outline: none; }\n\n.ez-tag__input-measure {\n  position: absolute;\n  visibility: hidden;\n  display: inline-block;\n  white-space: nowrap; }\n\n.ez-tag__dropdown {\n  position: absolute;\n  left: 0;\n  top: 100%;\n  width: 100%;\n  border: 1px solid #dedede;\n  border-top: none;\n  background: white;\n  display: none; }\n\n.ez-tag__option-container {\n  overflow-y: auto;\n  max-height: 300px; }\n\n.ez-tag__close {\n  padding: 10px;\n  text-align: center;\n  border-top: 1px solid #dedede;\n  cursor: pointer;\n  transition: all 0.150s; }\n\n.ez-tag__close:hover {\n  background: #f0f0f0; }\n\n.ez-tag__option {\n  padding: 10px;\n  cursor: pointer;\n  transition: all 0.100s; }\n\n.ez-tag__option:nth-child(even) {\n  background: rgba(227, 227, 227, 0.1); }\n\n.ez-tag__option:hover, .ez-tag__option--active {\n  background: #3498db !important;\n  color: white; }\n\n.ez-tag__footer {\n  padding: 5px 10px;\n  text-align: right;\n  border-top: 1px solid #dedede; }\n", ""]);
 
 // exports
 
@@ -688,7 +688,7 @@ exports.default = {
 
         return {
             input: '',
-            selectedTags: [{ value: 'kek' }],
+            selectedTags: [],
             activeOptionIndex: 0
         };
     },
@@ -696,7 +696,19 @@ exports.default = {
 
     props: {
 
-        data: {
+        allowNew: {
+
+            default: true
+
+        },
+        options: {
+
+            default: function _default() {
+                return [];
+            }
+
+        },
+        selected: {
 
             default: function _default() {
                 return [];
@@ -733,7 +745,7 @@ exports.default = {
         unselectedTags: function unselectedTags() {
             var _this3 = this;
 
-            var transformedData = this.data.map(this.stringifyTagValue);
+            var transformedData = this.options.map(this.stringifyTagValue);
 
             return transformedData.filter(function (tag) {
                 return !_this3.selectedTags.find(function (selected) {
@@ -756,10 +768,19 @@ exports.default = {
                     });
                 } else if (!this.inputExists) {
 
-                    options.push({
-                        value: this.input,
-                        new: true
-                    });
+                    if (this.allowNew) {
+
+                        options.push({
+                            value: this.input,
+                            new: true
+                        });
+                    } else {
+
+                        options.push({
+                            value: this.input,
+                            invalid: true
+                        });
+                    }
                 }
 
                 options = options.concat(this.unselectedTags.filter(function (tag) {
@@ -770,7 +791,7 @@ exports.default = {
                 options = this.unselectedTags;
             }
 
-            return options;
+            return this.removeDuplicates(options, 'value');
         }
     },
 
@@ -779,18 +800,17 @@ exports.default = {
 
             this.checkOptionIsInView();
         },
+        selected: function selected(tags) {
+
+            this.selectTags(tags);
+        },
         selectedTags: function selectedTags(tags) {
 
             this.$emit('update', tags);
         },
-        unselectedTags: function unselectedTags(tags) {
-
-            this.focusInput();
-        },
         input: function input(_input) {
 
-            console.log('input', _input);
-
+            this.setSearchElementsWidth();
             this.resetOptionIndex();
 
             if (_input) {
@@ -800,19 +820,76 @@ exports.default = {
         }
     },
 
+    created: function created() {
+
+        if (this.selected) {
+
+            this.selectTags(this.selected);
+        }
+    },
     ready: function ready() {
 
+        this.setSearchElementsWidth();
         this.addFocusListeners();
     },
 
 
     methods: {
+        getElementComputedStyle: function getElementComputedStyle(element, key) {
+
+            var style = window.getComputedStyle(element);
+
+            console.log('padding:', element, key, style.getPropertyValue(key));
+
+            return style.getPropertyValue(key);
+        },
+        setSearchElementsWidth: function setSearchElementsWidth() {
+
+            var searchElement = this.$els.search;
+            var placeholderElement = this.$els.placeholderMeasurement;
+            var measurementElement = this.$els.searchMeasurement;
+            var maxWidth = searchElement.parentElement.clientWidth;
+            var placeholderWidth = placeholderElement.clientWidth;
+            var searchWidth = measurementElement.clientWidth;
+            var paddingLeft = this.getElementComputedStyle(searchElement, 'padding-left');
+            var paddingRight = this.getElementComputedStyle(searchElement, 'padding-right');
+            var newWidth = searchWidth < placeholderWidth ? placeholderWidth : searchWidth;
+
+            console.log('input', this.input);
+            console.log('max width', maxWidth);
+            console.log('input width', searchWidth);
+            console.log('placeholder width', placeholderWidth);
+            console.log('padding', paddingLeft, paddingRight);
+
+            this.$els.search.style.width = newWidth > maxWidth ? '100%' : newWidth + 'px';
+        },
+        removeDuplicates: function removeDuplicates(array, key) {
+
+            var defaultResult = {
+                uniqueValues: {},
+                items: []
+            };
+
+            var uniques = array.reduce(function (result, current) {
+
+                var value = current[key];
+                var isUnique = typeof result.uniqueValues[value] == 'undefined';
+
+                if (isUnique) {
+
+                    result.uniqueValues[value] = true;
+                    result.items.push(current);
+                }
+
+                return result;
+            }, defaultResult).items;
+
+            return uniques;
+        },
         addFocusListeners: function addFocusListeners() {
             var _this5 = this;
 
             document.addEventListener('focusin', function (e) {
-
-                console.log(e);
 
                 var search = _this5.$els.search;
                 var target = e.target;
@@ -887,13 +964,13 @@ exports.default = {
 
             option = option || activeOption;
 
-            if (option && option.length) {
+            if (option) {
 
-                var containerHeight = option.parent().height();
-                var scrollTop = option.parent().scrollTop();
-                var positionTop = option.position().top;
+                var containerHeight = option.parentElement.offsetHeight;
+                var scrollTop = option.parentElement.scrollTop;
+                var positionTop = option.offsetTop;
 
-                if (positionTop < 0 || positionTop > containerHeight) {
+                if (positionTop < 0 || positionTop > containerHeight || positionTop < scrollTop) {
 
                     this.scrollToOption(option);
                 }
@@ -901,9 +978,11 @@ exports.default = {
         },
         scrollToOption: function scrollToOption(option) {
 
-            if (option && option.length) {
+            if (option) {
 
-                option.parent().scrollTop(option.position().top + option.parent().scrollTop());
+                var parent = option.parentElement;
+
+                parent.scrollTop = option.offsetTop;
             }
         },
         unselectTag: function unselectTag(tag) {
@@ -914,17 +993,41 @@ exports.default = {
         },
         selectTagFromOption: function selectTagFromOption() {
 
-            var option = $('.ez-tag__option--active');
+            var option = document.getElementsByClassName('ez-tag__option--active')[0];
 
-            if (option.length) {
+            if (option) {
 
                 option.click();
             }
         },
-        selectTag: function selectTag(tag) {
+        canSelectTag: function canSelectTag(tag) {
+
+            var isUnique = !this.tagIsSelected(tag);
+            var hasValue = typeof tag.value == 'number' ? true : !!tag.value;
+            var isValid = !tag.invalid;
+
+            return !!(isUnique && isValid && hasValue);
+        },
+        addTagToSelected: function addTagToSelected(tag) {
+
+            if (this.canSelectTag(tag)) {
+
+                this.selectedTags.push(tag);
+            }
+        },
+        selectTags: function selectTags(tags) {
             var _this8 = this;
 
-            if (!this.tagIsSelected(tag)) {
+            tags.forEach(this.addTagToSelected);
+
+            this.$nextTick(function () {
+
+                _this8.checkIfActiveOptionExists();
+            });
+        },
+        selectTag: function selectTag(tag) {
+
+            if (this.canSelectTag(tag)) {
 
                 this.selectedTags.push(tag);
 
@@ -933,15 +1036,12 @@ exports.default = {
                     this.input = '';
                 }
 
-                this.$nextTick(function () {
-
-                    _this8.checkIfActiveOptionExists();
-                });
+                this.$nextTick(this.checkIfActiveOptionExists);
             }
         },
         checkIfActiveOptionExists: function checkIfActiveOptionExists() {
 
-            var options = $('.ez-tag__option');
+            var options = document.getElementsByClassName('ez-tag__option');
 
             if (this.activeOptionIndex > options.length - 1) {
 
@@ -950,7 +1050,7 @@ exports.default = {
         },
         focusInput: function focusInput() {
 
-            var search = $(this.$els.search);
+            var search = this.$els.search;
 
             search.focus();
         },
@@ -979,7 +1079,7 @@ exports.default = {
         },
         nextOption: function nextOption() {
 
-            var options = $('.ez-tag__option');
+            var options = document.getElementsByClassName('ez-tag__option');
             var index = this.activeOptionIndex;
             var lastIndex = options.length - 1;
 
@@ -993,7 +1093,7 @@ exports.default = {
         },
         prevOption: function prevOption() {
 
-            var options = $('.ez-tag__option');
+            var options = document.getElementsByClassName('ez-tag__option');
             var index = this.activeOptionIndex;
             var lastIndex = options.length - 1;
 
@@ -1489,6 +1589,9 @@ exports.default = {
             } else if (this.tag.selected) {
 
                 return "\"" + this.tag.value + " is already selected\"";
+            } else if (this.tag.invalid) {
+
+                return "No results matches \"" + this.tag.value + "\"";
             } else {
 
                 return this.tag.value;
@@ -1531,7 +1634,8 @@ exports.default = {
 
             return {
                 background: this.tag.color,
-                color: this.tag.color ? 'white' : 'black'
+                color: this.tag.color ? 'white' : 'black',
+                border: '1px solid ' + (this.tag.color ? this.tag.color : '#dedede')
             };
         }
     },
@@ -1549,13 +1653,13 @@ exports.default = {
 /* 50 */
 /***/ (function(module, exports) {
 
-module.exports = "\n\n<div class=\"ez-tag__item\" :style=\"style\">\n    <span class=\"ez-tag__item-text\">{{tag.value}}</span>\n    <span v-on:click=\"unselect(tag)\" class=\"ez-tag__item-cross\">\n        <span class=\"fa fa-remove\"></span>\n    </span>\n</div>\n\n";
+module.exports = "\n\n<div class=\"ez-tag__item\" :style=\"style\">\n    <span class=\"ez-tag__item-text\">{{tag.value}}</span>\n    <span v-on:click=\"unselect(tag)\" class=\"ez-tag__item-cross\">\n        <span class=\"ez-tag__item-cross-line\" :style=\"{ background: style.color }\"></span>\n        <span class=\"ez-tag__item-cross-line\" :style=\"{ background: style.color }\"></span>\n    </span>\n</div>\n\n";
 
 /***/ }),
 /* 51 */
 /***/ (function(module, exports) {
 
-module.exports = "\n\n\n<div v-on:click.stop=\"focusInput\" class=\"ez-tag\">\n    <div v-on:keyup.enter=\"selectTagFromOption\" v-on:keydown.down=\"nextOption\" v-on:keydown.up=\"prevOption\" class=\"ez-tag__input-container\">\n        <div class=\"ez-tag__items\">\n            <tag-selected v-for=\"tag in selectedTags\" v-on:unselect=\"unselectTag\" :tag=\"tag\"></tag-selected>\n            <input v-el:search v-on:keydown.8=\"unselectLastTag\" v-model=\"input\" tabindex=\"0\" type=\"text\" class=\"ez-tag__input\" :placeholder=\"placeholder\">\n        </div>\n        <div v-if=\"selectedTags.length\" class=\"ez-tag__clear-items\">\n            <span v-on:click=\"clearSelected\" class=\"fa fa-remove\"></span>\n        </div>\n    </div>\n    <div v-el:dropdown class=\"ez-tag__dropdown\">\n        <div class=\"ez-tag__option-container\">\n            <tag-option v-for=\"tag in filteredTags\" v-on:click=\"selectTag(tag)\" :tag=\"tag\" track-by=\"$index\" :class=\"{'ez-tag__option--active': activeOptionIndex == $index}\"></tag-option>\n        </div>\n        <div v-if=\"filteredTags.length\" v-on:click.stop=\"closeDropdown\" class=\"ez-tag__close\">\n            Close\n        </div>\n    </div>\n</div>\n\n";
+module.exports = "\n\n<div v-on:click.stop=\"focusInput\" class=\"ez-tag\">\n    <div v-on:keyup.enter=\"selectTagFromOption\" v-on:keydown.down=\"nextOption\" v-on:keydown.up=\"prevOption\"\n         class=\"ez-tag__input-container\">\n        <div class=\"ez-tag__items\">\n            <tag-selected v-for=\"tag in selectedTags\" v-on:unselect=\"unselectTag\" :tag=\"tag\" track-by=\"$index\"></tag-selected>\n            <input v-el:search v-on:keydown.8=\"unselectLastTag\" v-model=\"input\" tabindex=\"0\" type=\"text\" class=\"ez-tag__input\" :placeholder=\"placeholder\">\n            <div v-el:placeholder-measurement class=\"ez-tag__input-measure\">{{placeholder}}</div>\n            <div v-el:search-measurement class=\"ez-tag__input-measure\">{{input}}</div>\n        </div>\n        <div v-if=\"selectedTags.length\" class=\"ez-tag__clear-items\">\n            <span v-on:click=\"clearSelected\" class=\"fa fa-remove\"></span>\n        </div>\n    </div>\n    <div v-el:dropdown class=\"ez-tag__dropdown\">\n        <div class=\"ez-tag__option-container\">\n            <tag-option v-for=\"tag in filteredTags\" v-on:click=\"selectTag(tag)\" :tag=\"tag\" track-by=\"$index\" :class=\"{'ez-tag__option--active': activeOptionIndex == $index}\" track-by=\"$index\"></tag-option>\n        </div>\n        <div v-if=\"filteredTags.length\" v-on:click.stop=\"closeDropdown\" class=\"ez-tag__close\">\n            Close\n        </div>\n    </div>\n</div>\n\n";
 
 /***/ })
 /******/ ]);

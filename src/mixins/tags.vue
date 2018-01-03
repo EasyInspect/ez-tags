@@ -1,11 +1,13 @@
-
 <template>
 
     <div v-on:click.stop="focusInput" class="ez-tag">
-        <div v-on:keyup.enter="selectTagFromOption" v-on:keydown.down="nextOption" v-on:keydown.up="prevOption" class="ez-tag__input-container">
+        <div v-on:keyup.enter="selectTagFromOption" v-on:keydown.down="nextOption" v-on:keydown.up="prevOption"
+             class="ez-tag__input-container">
             <div class="ez-tag__items">
-                <tag-selected v-for="tag in selectedTags" v-on:unselect="unselectTag" :tag="tag"></tag-selected>
+                <tag-selected v-for="tag in selectedTags" v-on:unselect="unselectTag" :tag="tag" track-by="$index"></tag-selected>
                 <input v-el:search v-on:keydown.8="unselectLastTag" v-model="input" tabindex="0" type="text" class="ez-tag__input" :placeholder="placeholder">
+                <div v-el:placeholder-measurement class="ez-tag__input-measure">{{placeholder}}</div>
+                <div v-el:search-measurement class="ez-tag__input-measure">{{input}}</div>
             </div>
             <div v-if="selectedTags.length" class="ez-tag__clear-items">
                 <span v-on:click="clearSelected" class="fa fa-remove"></span>
@@ -13,7 +15,7 @@
         </div>
         <div v-el:dropdown class="ez-tag__dropdown">
             <div class="ez-tag__option-container">
-                <tag-option v-for="tag in filteredTags" v-on:click="selectTag(tag)" :tag="tag" track-by="$index" :class="{'ez-tag__option--active': activeOptionIndex == $index}"></tag-option>
+                <tag-option v-for="tag in filteredTags" v-on:click="selectTag(tag)" :tag="tag" track-by="$index" :class="{'ez-tag__option--active': activeOptionIndex == $index}" track-by="$index"></tag-option>
             </div>
             <div v-if="filteredTags.length" v-on:click.stop="closeDropdown" class="ez-tag__close">
                 Close
@@ -28,42 +30,43 @@
     .ez-tag {
         border-radius: 3px;
         position: relative;
+        box-sizing: border-box;
     }
 
     .ez-tag__pointer {
-         margin: 5px 10px 10px 10px;
-         cursor: pointer;
-         opacity: 0.6;
-         transition: all 0.150s;
-     }
+        margin: 5px 10px 10px 10px;
+        cursor: pointer;
+        opacity: 0.6;
+        transition: all 0.150s;
+    }
 
-    .ez-tag__display{
-         cursor: pointer;
-     }
+    .ez-tag__display {
+        cursor: pointer;
+    }
 
     .ez-tag__placeholder {
-         opacity: 0.5;
-         margin: 5px 10px 10px 10px;
-     }
+        opacity: 0.5;
+        margin: 5px 10px 10px 10px;
+    }
 
     .ez-tag__input-container {
-         border: 1px solid #dedede;
-         padding: 10px 10px 5px 10px;
-         display: flex;
-     }
+        border: 1px solid #dedede;
+        padding: 10px 10px 5px 10px;
+        display: flex;
+    }
 
     .ez-tag__display-container {
         padding: 5px 5px 0 5px;
         display: flex;
     }
 
-    .ez-tag__display-container:hover{
+    .ez-tag__display-container:hover {
         opacity: 1;
     }
 
-    .ez-tag__items{
-         flex-grow: 1;
-     }
+    .ez-tag__items {
+        flex-grow: 1;
+    }
 
     .ez-tag__clear-items {
         background: white;
@@ -76,41 +79,54 @@
         color: grey;
     }
 
-    .ez-tag__clear-items span:hover{
+    .ez-tag__clear-items span:hover {
         color: black;
     }
 
     .ez-tag__item {
-         border-radius: 10px;
-         border: 1px solid #dedede;
-         padding: 5px 5px 5px 10px;
-         display: inline-block;
-         margin-right: 5px;
-         margin-bottom: 5px;
+        border-radius: 10px;
+        border: 1px solid #dedede;
+        padding: 5px 20px 5px 10px;
+        display: inline-block;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        position: relative;
     }
 
     .ez-tag__item-text {
-         display: inline-block;
-         vertical-align: bottom;
+        display: inline-block;
+        vertical-align: bottom;
     }
 
     .ez-tag__item-cross {
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 10px;
-        width: 2em;
-        height: 2em;
-        padding: 2px;
-        border-radius: 10px;
-        text-align: center;
+        position: absolute;
+        right: 0;
+        top: 5px;
+        font-size: 5px;
+        width: 3em;
+        height: 3em;
+        opacity: 0.5;
         cursor: pointer;
-        transition: all 0.150s;
-        opacity: 0.6;
     }
 
-    .ez-tag__item-cross span {
-        vertical-align: baseline;
+    .ez-tag__item-cross-line {
+        font-size: inherit;
+        position: absolute;
+        content: ' ';
+        height: 2em;
+        width: 2px;
+        background-color: #333;
+        top: 0.75em;
+        left: 1em;
+        cursor: pointer;
+    }
+
+    .ez-tag__item-cross-line:nth-child(odd) {
+        transform: rotate(45deg);
+    }
+
+    .ez-tag__item-cross-line:nth-child(even) {
+        transform: rotate(-45deg);
     }
 
     .ez-tag__item-cross:hover, .ez-tag__item-cross--active {
@@ -119,21 +135,30 @@
 
     .ez-tag__input {
         border: none;
-        margin: 5px 5px 10px 5px;
-        width: 100%;
+        padding: 5px 5px 10px 5px;
     }
+
     .ez-tag__input:focus {
         outline: none;
     }
 
+    .ez-tag__input-measure{
+        position: absolute;
+        visibility: hidden;
+        display: inline-block;
+        white-space: nowrap;
+    }
+
     .ez-tag__dropdown {
         position: absolute;
+        left: 0;
+        top: 100%;
         width: 100%;
         border: 1px solid #dedede;
         border-top: none;
         background: white;
         display: none;
-     }
+    }
 
     .ez-tag__option-container {
         overflow-y: auto;
@@ -159,18 +184,18 @@
     }
 
     .ez-tag__option:nth-child(even) {
-         background: rgba(227, 227, 227, 0.1);
-     }
+        background: rgba(227, 227, 227, 0.1);
+    }
 
     .ez-tag__option:hover, .ez-tag__option--active {
         background: #3498db !important;
         color: white;
     }
 
-    .ez-tag__footer{
-         padding: 5px 10px;
-         text-align: right;
-         border-top: 1px solid #dedede;
+    .ez-tag__footer {
+        padding: 5px 10px;
+        text-align: right;
+        border-top: 1px solid #dedede;
     }
 
 </style>
@@ -182,13 +207,13 @@
 
     export default {
 
-        components: { TagOption, TagSelected },
+        components: {TagOption, TagSelected},
 
         data() {
 
             return {
                 input: '',
-                selectedTags: [{value: 'kek'}],
+                selectedTags: [],
                 activeOptionIndex: 0
             }
 
@@ -196,7 +221,17 @@
 
         props: {
 
-            data: {
+            allowNew: {
+
+                default: true
+
+            },
+            options: {
+
+                default: () => []
+
+            },
+            selected: {
 
                 default: () => []
 
@@ -228,7 +263,7 @@
             },
             unselectedTags() {
 
-                const transformedData = this.data.map(this.stringifyTagValue);
+                const transformedData = this.options.map(this.stringifyTagValue);
 
                 return transformedData.filter(tag => !this.selectedTags.find(selected => selected.value == tag.value));
 
@@ -248,10 +283,21 @@
 
                     } else if (!this.inputExists) {
 
-                        options.push({
-                            value: this.input,
-                            new: true
-                        })
+                        if (this.allowNew) {
+
+                            options.push({
+                                value: this.input,
+                                new: true
+                            })
+
+                        } else {
+
+                            options.push({
+                                value: this.input,
+                                invalid: true
+                            })
+
+                        }
 
                     }
 
@@ -263,7 +309,7 @@
 
                 }
 
-                return options;
+                return this.removeDuplicates(options, 'value');
 
             }
 
@@ -276,20 +322,19 @@
                 this.checkOptionIsInView();
 
             },
+            selected(tags) {
+
+                this.selectTags(tags);
+
+            },
             selectedTags(tags) {
 
                 this.$emit('update', tags);
 
             },
-            unselectedTags(tags) {
-
-                this.focusInput();
-
-            },
             input(input) {
 
-                console.log('input', input);
-
+                this.setSearchElementsWidth();
                 this.resetOptionIndex();
 
                 if (input) {
@@ -302,19 +347,87 @@
 
         },
 
+        created() {
+
+            if (this.selected) {
+
+                this.selectTags(this.selected);
+
+            }
+
+        },
+
         ready() {
 
+            this.setSearchElementsWidth();
             this.addFocusListeners();
 
         },
 
         methods: {
 
+            getElementComputedStyle(element, key) {
+
+                const style = window.getComputedStyle(element);
+
+                console.log('padding:', element, key, style.getPropertyValue(key));
+
+                return style.getPropertyValue(key);
+
+            },
+            setSearchElementsWidth() {
+
+                const searchElement         = this.$els.search;
+                const placeholderElement    = this.$els.placeholderMeasurement;
+                const measurementElement    = this.$els.searchMeasurement;
+                const maxWidth              = searchElement.parentElement.clientWidth;
+                const placeholderWidth      = placeholderElement.clientWidth;
+                const searchWidth           = measurementElement.clientWidth;
+                const paddingLeft           = this.getElementComputedStyle(searchElement, 'padding-left');
+                const paddingRight          = this.getElementComputedStyle(searchElement, 'padding-right');
+                const newWidth              = searchWidth < placeholderWidth ? placeholderWidth : searchWidth;
+
+                // TODO Remove padding left + padding right from final width
+                // call this function on window resize aswell
+
+                console.log('input', this.input);
+                console.log('max width', maxWidth);
+                console.log('input width', searchWidth);
+                console.log('placeholder width', placeholderWidth);
+                console.log('padding', paddingLeft, paddingRight);
+
+                this.$els.search.style.width = newWidth > maxWidth ? `100%` : `${newWidth}px`;
+
+            },
+            removeDuplicates(array, key) {
+
+                let defaultResult = {
+                    uniqueValues: {},
+                    items: []
+                };
+
+                const uniques = array.reduce((result, current) => {
+
+                    const value = current[key];
+                    const isUnique = typeof result.uniqueValues[value] == 'undefined';
+
+                    if (isUnique) {
+
+                        result.uniqueValues[value] = true;
+                        result.items.push(current);
+
+                    }
+
+                    return result;
+
+                }, defaultResult).items;
+
+                return uniques;
+
+            },
             addFocusListeners() {
 
                 document.addEventListener('focusin', e => {
-
-                    console.log(e);
 
                     const search = this.$els.search;
                     const target = e.target;
@@ -386,8 +499,8 @@
             },
             selectOptionFromIndex(index) {
 
-                const options   = document.getElementsByClassName('ez-tag__option');
-                const option    = options[index];
+                const options = document.getElementsByClassName('ez-tag__option');
+                const option = options[index];
 
                 if (option) {
 
@@ -402,13 +515,13 @@
 
                 option = option || activeOption;
 
-                if (option && option.length) {
+                if (option) {
 
-                    const containerHeight = option.parent().height();
-                    const scrollTop = option.parent().scrollTop();
-                    const positionTop = option.position().top;
+                    const containerHeight = option.parentElement.offsetHeight;
+                    const scrollTop = option.parentElement.scrollTop;
+                    const positionTop = option.offsetTop;
 
-                    if (positionTop < 0 || positionTop > containerHeight) {
+                    if (positionTop < 0 || positionTop > containerHeight || positionTop < scrollTop) {
 
                         this.scrollToOption(option);
 
@@ -419,9 +532,11 @@
             },
             scrollToOption(option) {
 
-                if (option && option.length) {
+                if (option) {
 
-                    option.parent().scrollTop(option.position().top + option.parent().scrollTop());
+                    const parent = option.parentElement;
+
+                    parent.scrollTop = option.offsetTop;
 
                 }
 
@@ -433,18 +548,47 @@
             },
             selectTagFromOption() {
 
-                const option = $('.ez-tag__option--active');
+                const option = document.getElementsByClassName('ez-tag__option--active')[0];
 
-                if (option.length) {
+                if (option) {
 
                     option.click();
 
                 }
 
             },
+            canSelectTag(tag) {
+
+                const isUnique          = !this.tagIsSelected(tag);
+                const hasValue          = typeof tag.value == 'number' ? true : !!tag.value;
+                const isValid           = !tag.invalid;
+
+                return !!(isUnique && isValid && hasValue)
+
+            },
+            addTagToSelected(tag) {
+
+                if (this.canSelectTag(tag)) {
+
+                    this.selectedTags.push(tag);
+
+                }
+
+            },
+            selectTags(tags) {
+
+                tags.forEach(this.addTagToSelected);
+
+                this.$nextTick(() => {
+
+                    this.checkIfActiveOptionExists();
+
+                })
+
+            },
             selectTag(tag) {
 
-                if (!this.tagIsSelected(tag)) {
+                if (this.canSelectTag(tag)) {
 
                     this.selectedTags.push(tag);
 
@@ -454,18 +598,14 @@
 
                     }
 
-                    this.$nextTick(() => {
-
-                        this.checkIfActiveOptionExists();
-
-                    })
+                    this.$nextTick(this.checkIfActiveOptionExists)
 
                 }
 
             },
             checkIfActiveOptionExists() {
 
-                const options = $('.ez-tag__option');
+                const options = document.getElementsByClassName('ez-tag__option');
 
                 if (this.activeOptionIndex > options.length - 1) {
 
@@ -476,7 +616,7 @@
             },
             focusInput() {
 
-                const search = $(this.$els.search);
+                const search = this.$els.search;
 
                 search.focus();
 
@@ -509,7 +649,7 @@
             },
             nextOption() {
 
-                const options = $('.ez-tag__option');
+                const options = document.getElementsByClassName('ez-tag__option');
                 const index = this.activeOptionIndex;
                 const lastIndex = options.length - 1;
 
@@ -526,7 +666,7 @@
             },
             prevOption() {
 
-                const options = $('.ez-tag__option');
+                const options = document.getElementsByClassName('ez-tag__option');
                 const index = this.activeOptionIndex;
                 const lastIndex = options.length - 1;
 

@@ -3,7 +3,8 @@
     <div class="ez-tag__item" :style="style">
         <span class="ez-tag__item-text">{{tag.value}}</span>
         <span v-on:click="unselect(tag)" class="ez-tag__item-cross">
-            <span class="fa fa-remove"></span>
+            <span class="ez-tag__item-cross-line" :style="{ background: style.color }"></span>
+            <span class="ez-tag__item-cross-line" :style="{ background: style.color }"></span>
         </span>
     </div>
 
@@ -29,7 +30,8 @@
 
                 return {
                     background: this.tag.color,
-                    color: this.tag.color ? 'white' : 'black'
+                    color: this.tag.color ? 'white' : 'black',
+                    border: `1px solid ${this.tag.color ? this.tag.color : '#dedede'}`
                 }
 
             }

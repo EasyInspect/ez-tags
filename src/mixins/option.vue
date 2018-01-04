@@ -29,7 +29,7 @@
 
                 } else if (this.tag.selected) {
 
-                    return `"${this.tag.value} is already selected"`;
+                    return `"${this.tag.value}" is already selected`;
 
                 } else if (this.tag.invalid) {
 

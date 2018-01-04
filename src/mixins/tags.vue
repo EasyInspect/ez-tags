@@ -10,10 +10,13 @@
                 <div v-el:search-measurement class="ez-tag__input-measure">{{input}}</div>
             </div>
             <div v-if="selectedTags.length" class="ez-tag__clear-items">
-                <span v-on:click="clearSelected" class="fa fa-remove"></span>
+                <span v-on:click="clearSelected" class="ez-tag__item-cross">
+                    <span class="ez-tag__item-cross-line"></span>
+                    <span class="ez-tag__item-cross-line"></span>
+                </span>
             </div>
         </div>
-        <div v-el:dropdown class="ez-tag__dropdown">
+        <div v-if="filteredTags.length" v-el:dropdown class="ez-tag__dropdown">
             <div class="ez-tag__option-container">
                 <tag-option v-for="tag in filteredTags" v-on:click="selectTag(tag)" :tag="tag" track-by="$index" :class="{'ez-tag__option--active': activeOptionIndex == $index}" track-by="$index"></tag-option>
             </div>
@@ -65,22 +68,13 @@
     }
 
     .ez-tag__items {
-        flex-grow: 1;
+        width: calc(100% - 15px);
     }
 
     .ez-tag__clear-items {
         background: white;
-    }
-
-    .ez-tag__clear-items span {
-        margin-top: 5px;
-        padding: 5px;
-        cursor: pointer;
-        color: grey;
-    }
-
-    .ez-tag__clear-items span:hover {
-        color: black;
+        width: 15px;
+        position: relative;
     }
 
     .ez-tag__item {
@@ -158,6 +152,7 @@
         border-top: none;
         background: white;
         display: none;
+        width: calc(100% - 2px);
     }
 
     .ez-tag__option-container {
@@ -178,6 +173,7 @@
     }
 
     .ez-tag__option {
+        word-wrap: break-word;
         padding: 10px;
         cursor: pointer;
         transition: all 0.100s;
@@ -359,6 +355,8 @@
 
         ready() {
 
+            window.addEventListener('resize', this.setSearchElementsWidth);
+
             this.setSearchElementsWidth();
             this.addFocusListeners();
 
@@ -383,20 +381,24 @@
                 const maxWidth              = searchElement.parentElement.clientWidth;
                 const placeholderWidth      = placeholderElement.clientWidth;
                 const searchWidth           = measurementElement.clientWidth;
-                const paddingLeft           = this.getElementComputedStyle(searchElement, 'padding-left');
-                const paddingRight          = this.getElementComputedStyle(searchElement, 'padding-right');
-                const newWidth              = searchWidth < placeholderWidth ? placeholderWidth : searchWidth;
+                const paddingLeft           = parseFloat(this.getElementComputedStyle(searchElement, 'padding-left').slice(0, -2));
+                const paddingRight          = parseFloat(this.getElementComputedStyle(searchElement, 'padding-right').slice(0, -2));
+                let newWidth                = searchWidth < placeholderWidth ? placeholderWidth : searchWidth;
+
+                newWidth = (newWidth > maxWidth ? maxWidth : newWidth) - (paddingLeft + paddingRight) + 'px';
 
                 // TODO Remove padding left + padding right from final width
                 // call this function on window resize aswell
+                // add cross to clear all
 
                 console.log('input', this.input);
                 console.log('max width', maxWidth);
                 console.log('input width', searchWidth);
                 console.log('placeholder width', placeholderWidth);
                 console.log('padding', paddingLeft, paddingRight);
+                console.log('final width', newWidth);
 
-                this.$els.search.style.width = newWidth > maxWidth ? `100%` : `${newWidth}px`;
+                this.$els.search.style.width = newWidth;
 
             },
             removeDuplicates(array, key) {
@@ -462,34 +464,42 @@
 
                 const dropdown = this.$els.dropdown;
 
-                dropdown.style.display = 'none';
+                if (dropdown) {
 
-                this.$nextTick(() => {
+                    dropdown.style.display = 'none';
 
-                    if (dropdown.style.display == 'none') {
+                    this.$nextTick(() => {
 
-                        this.resetOptionIndex();
+                        if (dropdown.style.display == 'none') {
 
-                    }
+                            this.resetOptionIndex();
 
-                })
+                        }
+
+                    })
+
+                }
 
             },
             openDropdown() {
 
                 const dropdown = this.$els.dropdown;
 
-                dropdown.style.display = 'block';
+                if (dropdown) {
 
-                this.$nextTick(() => {
+                    dropdown.style.display = 'block';
 
-                    if (dropdown.style.display != 'none') {
+                    this.$nextTick(() => {
 
-                        this.checkOptionIsInView()
+                        if (dropdown.style.display != 'none') {
 
-                    }
+                            this.checkOptionIsInView()
 
-                })
+                        }
+
+                    })
+
+                }
 
             },
             clearSelected() {
@@ -559,11 +569,13 @@
             },
             canSelectTag(tag) {
 
+                const whitespaceRegex   = /^\s*|\s*\Z|\s\B/g;
+                const value             = typeof tag.value == 'string' ? tag.value.replace(whitespaceRegex, '') : tag.value;
+                const hasValue          = typeof value == 'number' ? true : !!value;
                 const isUnique          = !this.tagIsSelected(tag);
-                const hasValue          = typeof tag.value == 'number' ? true : !!tag.value;
                 const isValid           = !tag.invalid;
 
-                return !!(isUnique && isValid && hasValue)
+                return !!(isUnique && isValid && hasValue);
 
             },
             addTagToSelected(tag) {

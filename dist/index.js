@@ -142,7 +142,7 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
-var cof = __webpack_require__(36);
+var cof = __webpack_require__(37);
 // eslint-disable-next-line no-prototype-builtins
 module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
   return cof(it) == 'String' ? it.split('') : Object(it);
@@ -177,12 +177,12 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var __vue_script__, __vue_template__
-__vue_script__ = __webpack_require__(47)
+__vue_script__ = __webpack_require__(48)
 if (__vue_script__ &&
     __vue_script__.__esModule &&
     Object.keys(__vue_script__).length > 1) {
   console.warn("[vue-loader] src/mixins/option.vue: named exports in *.vue files are ignored.")}
-__vue_template__ = __webpack_require__(48)
+__vue_template__ = __webpack_require__(49)
 module.exports = __vue_script__ || {}
 if (module.exports.__esModule) module.exports = module.exports.default
 if (__vue_template__) {
@@ -205,12 +205,12 @@ if (false) {(function () {  module.hot.accept()
 /***/ (function(module, exports, __webpack_require__) {
 
 var __vue_script__, __vue_template__
-__vue_script__ = __webpack_require__(49)
+__vue_script__ = __webpack_require__(50)
 if (__vue_script__ &&
     __vue_script__.__esModule &&
     Object.keys(__vue_script__).length > 1) {
   console.warn("[vue-loader] src/mixins/selected.vue: named exports in *.vue files are ignored.")}
-__vue_template__ = __webpack_require__(50)
+__vue_template__ = __webpack_require__(51)
 module.exports = __vue_script__ || {}
 if (module.exports.__esModule) module.exports = module.exports.default
 if (__vue_template__) {
@@ -234,15 +234,18 @@ if (false) {(function () {  module.hot.accept()
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_tags_vue__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_tags_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__mixins_tags_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_option_vue__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_option_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__mixins_option_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_selected_vue__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_selected_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__mixins_selected_vue__);
-/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "EzTags", function() { return __WEBPACK_IMPORTED_MODULE_0__mixins_tags_vue___default.a; });
-/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "EzTagsOption", function() { return __WEBPACK_IMPORTED_MODULE_1__mixins_option_vue___default.a; });
-/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "EzTagsSelected", function() { return __WEBPACK_IMPORTED_MODULE_2__mixins_selected_vue___default.a; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__scss_main_scss__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__scss_main_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__scss_main_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_tags_vue__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_tags_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__mixins_tags_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_option_vue__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_option_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__mixins_option_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_selected_vue__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_selected_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__mixins_selected_vue__);
+/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "EzTags", function() { return __WEBPACK_IMPORTED_MODULE_1__mixins_tags_vue___default.a; });
+/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "EzTagsOption", function() { return __WEBPACK_IMPORTED_MODULE_2__mixins_option_vue___default.a; });
+/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "EzTagsSelected", function() { return __WEBPACK_IMPORTED_MODULE_3__mixins_selected_vue___default.a; });
+
 
 
 
@@ -252,75 +255,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 12 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-var __vue_script__, __vue_template__
-__webpack_require__(13)
-__vue_script__ = __webpack_require__(18)
-if (__vue_script__ &&
-    __vue_script__.__esModule &&
-    Object.keys(__vue_script__).length > 1) {
-  console.warn("[vue-loader] src/mixins/tags.vue: named exports in *.vue files are ignored.")}
-__vue_template__ = __webpack_require__(51)
-module.exports = __vue_script__ || {}
-if (module.exports.__esModule) module.exports = module.exports.default
-if (__vue_template__) {
-(typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports).template = __vue_template__
-}
-if (false) {(function () {  module.hot.accept()
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  var id = "./tags.vue"
-  if (!module.hot.data) {
-    hotAPI.createRecord(id, module.exports)
-  } else {
-    hotAPI.update(id, module.exports, __vue_template__)
-  }
-})()}
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(14);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(16)("0b61febd", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js!../../node_modules/sass-loader/lib/loader.js!../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./tags.vue", function() {
-     var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js!../../node_modules/sass-loader/lib/loader.js!../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./tags.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(15)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, ".ez-tag {\n  border-radius: 3px;\n  position: relative;\n  box-sizing: border-box; }\n\n.ez-tag__pointer {\n  margin: 5px 10px 10px 10px;\n  cursor: pointer;\n  opacity: 0.6;\n  transition: all 0.150s; }\n\n.ez-tag__display {\n  cursor: pointer; }\n\n.ez-tag__placeholder {\n  opacity: 0.5;\n  margin: 5px 10px 10px 10px; }\n\n.ez-tag__input-container {\n  border: 1px solid #dedede;\n  padding: 10px 10px 5px 10px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n\n.ez-tag__display-container {\n  padding: 5px 5px 0 5px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n\n.ez-tag__display-container:hover {\n  opacity: 1; }\n\n.ez-tag__items {\n  width: calc(100% - 15px); }\n\n.ez-tag__clear-items {\n  background: white;\n  width: 15px;\n  position: relative; }\n\n.ez-tag__item {\n  border-radius: 10px;\n  border: 1px solid #dedede;\n  padding: 5px 20px 5px 10px;\n  display: inline-block;\n  margin-right: 5px;\n  margin-bottom: 5px;\n  position: relative; }\n\n.ez-tag__item-text {\n  display: inline-block;\n  vertical-align: bottom; }\n\n.ez-tag__item-cross {\n  position: absolute;\n  right: 0;\n  top: 5px;\n  font-size: 5px;\n  width: 3em;\n  height: 3em;\n  opacity: 0.5;\n  cursor: pointer; }\n\n.ez-tag__item-cross-line {\n  font-size: inherit;\n  position: absolute;\n  content: ' ';\n  height: 2em;\n  width: 2px;\n  background-color: #333;\n  top: 0.75em;\n  left: 1em;\n  cursor: pointer; }\n\n.ez-tag__item-cross-line:nth-child(odd) {\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg); }\n\n.ez-tag__item-cross-line:nth-child(even) {\n  -webkit-transform: rotate(-45deg);\n          transform: rotate(-45deg); }\n\n.ez-tag__item-cross:hover, .ez-tag__item-cross--active {\n  opacity: 1; }\n\n.ez-tag__input {\n  border: none;\n  padding: 5px 5px 10px 5px; }\n\n.ez-tag__input:focus {\n  outline: none; }\n\n.ez-tag__input-measure {\n  position: absolute;\n  visibility: hidden;\n  display: inline-block;\n  white-space: nowrap; }\n\n.ez-tag__dropdown {\n  position: absolute;\n  left: 0;\n  top: 100%;\n  width: 100%;\n  border: 1px solid #dedede;\n  border-top: none;\n  background: white;\n  display: none;\n  width: calc(100% - 2px); }\n\n.ez-tag__option-container {\n  overflow-y: auto;\n  max-height: 300px; }\n\n.ez-tag__close {\n  padding: 10px;\n  text-align: center;\n  border-top: 1px solid #dedede;\n  cursor: pointer;\n  transition: all 0.150s; }\n\n.ez-tag__close:hover {\n  background: #f0f0f0; }\n\n.ez-tag__option {\n  word-wrap: break-word;\n  padding: 10px;\n  cursor: pointer;\n  transition: all 0.100s; }\n\n.ez-tag__option:nth-child(even) {\n  background: rgba(227, 227, 227, 0.1); }\n\n.ez-tag__option:hover, .ez-tag__option--active {\n  background: #3498db !important;\n  color: white; }\n\n.ez-tag__footer {\n  padding: 5px 10px;\n  text-align: right;\n  border-top: 1px solid #dedede; }\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 15 */
 /***/ (function(module, exports) {
 
 /*
@@ -402,7 +342,76 @@ function toComment(sourceMap) {
 
 
 /***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __vue_script__, __vue_template__
+__webpack_require__(15)
+__vue_script__ = __webpack_require__(19)
+if (__vue_script__ &&
+    __vue_script__.__esModule &&
+    Object.keys(__vue_script__).length > 1) {
+  console.warn("[vue-loader] src/mixins/tags.vue: named exports in *.vue files are ignored.")}
+__vue_template__ = __webpack_require__(52)
+module.exports = __vue_script__ || {}
+if (module.exports.__esModule) module.exports = module.exports.default
+if (__vue_template__) {
+(typeof module.exports === "function" ? (module.exports.options || (module.exports.options = {})) : module.exports).template = __vue_template__
+}
+if (false) {(function () {  module.hot.accept()
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  var id = "./tags.vue"
+  if (!module.hot.data) {
+    hotAPI.createRecord(id, module.exports)
+  } else {
+    hotAPI.update(id, module.exports, __vue_template__)
+  }
+})()}
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(16);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(17)("0b61febd", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js!../../node_modules/sass-loader/lib/loader.js!../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./tags.vue", function() {
+     var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/vue-loader/lib/style-rewriter.js!../../node_modules/sass-loader/lib/loader.js!../../node_modules/vue-loader/lib/selector.js?type=style&index=0!./tags.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
 /* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(13)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".ez-tag {\n  position: relative;\n  box-sizing: border-box;\n  cursor: text; }\n\n.ez-tag * {\n  box-sizing: border-box; }\n\n.ez-tag__pointer {\n  margin: 5px 10px 10px 10px;\n  cursor: pointer;\n  opacity: 0.6;\n  transition: all 0.150s; }\n\n.ez-tag__display {\n  cursor: pointer; }\n\n.ez-tag__placeholder {\n  opacity: 0.5;\n  margin: 5px 10px 10px 10px; }\n\n.ez-tag--focus .ez-tag__input-container {\n  outline: 0;\n  border-color: #66afe9;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6); }\n\n.ez-tag__input-container {\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n  padding: 10px 10px 5px 10px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n\n.ez-tag__input-container--open {\n  border-bottom-left-radius: 0;\n  border-bottom-right-radius: 0; }\n\n.ez-tag__display-container {\n  padding: 5px 5px 0 5px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex; }\n\n.ez-tag__display-container:hover {\n  opacity: 1; }\n\n.ez-tag__items {\n  width: calc(100% - 15px); }\n\n.ez-tag__clear-items {\n  background: white;\n  width: 15px;\n  position: relative; }\n\n.ez-tag__item {\n  border-radius: 10px;\n  border: 1px solid #dedede;\n  padding: 5px 20px 5px 10px;\n  display: inline-block;\n  margin-right: 5px;\n  margin-bottom: 5px;\n  position: relative; }\n\n.ez-tag__item-text {\n  display: inline-block;\n  vertical-align: bottom; }\n\n.ez-tag__item-cross {\n  position: absolute;\n  right: 0;\n  top: 5px;\n  font-size: 5px;\n  width: 3em;\n  height: 3em;\n  opacity: 0.5;\n  cursor: pointer; }\n\n.ez-tag__item-cross-line {\n  font-size: inherit;\n  position: absolute;\n  content: ' ';\n  height: 2em;\n  width: 2px;\n  background-color: #333;\n  left: 1em;\n  cursor: pointer; }\n\n.ez-tag__item-cross-line:nth-child(odd) {\n  -webkit-transform: rotate(45deg);\n          transform: rotate(45deg); }\n\n.ez-tag__item-cross-line:nth-child(even) {\n  -webkit-transform: rotate(-45deg);\n          transform: rotate(-45deg); }\n\n.ez-tag__item-cross:hover, .ez-tag__item-cross--active {\n  opacity: 1; }\n\n.ez-tag__input {\n  border: none;\n  padding: 5px 5px 10px 5px; }\n\n.ez-tag__input:focus {\n  outline: none; }\n\n.ez-tag__input-measure {\n  position: absolute;\n  visibility: hidden;\n  display: inline-block;\n  white-space: nowrap; }\n\n.ez-tag--focus .ez-tag__dropdown {\n  outline: 0;\n  border-color: #66afe9;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6); }\n\n.ez-tag__dropdown {\n  position: absolute;\n  left: 0;\n  top: 100%;\n  width: 100%;\n  background: white;\n  width: 100%;\n  border: 1px solid #ccc;\n  border-top: none;\n  border-bottom-left-radius: 4px;\n  border-bottom-right-radius: 4px; }\n\n.ez-tag__option-container {\n  overflow-y: auto;\n  max-height: 300px; }\n\n.ez-tag__close {\n  padding: 10px;\n  text-align: center;\n  border-top: 1px solid #ccc;\n  cursor: pointer;\n  transition: all 0.150s; }\n\n.ez-tag__close:hover {\n  background: #f0f0f0; }\n\n.ez-tag__option {\n  word-wrap: break-word;\n  padding: 10px;\n  cursor: pointer;\n  transition: all 0.100s; }\n\n.ez-tag__option:nth-child(even) {\n  background: rgba(227, 227, 227, 0.1); }\n\n.ez-tag__option:hover, .ez-tag__option--active {\n  background: #3498db !important;\n  color: white; }\n\n.ez-tag__footer {\n  padding: 5px 10px;\n  text-align: right;\n  border-top: 1px solid #ccc; }\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -421,7 +430,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(17)
+var listToStyles = __webpack_require__(18)
 
 /*
 type StyleObject = {
@@ -623,7 +632,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports) {
 
 /**
@@ -656,7 +665,7 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -666,7 +675,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _assign = __webpack_require__(19);
+var _assign = __webpack_require__(20);
 
 var _assign2 = _interopRequireDefault(_assign);
 
@@ -689,13 +698,19 @@ exports.default = {
         return {
             input: '',
             selectedTags: [],
-            activeOptionIndex: 0
+            activeOptionIndex: 0,
+            inFocus: false
         };
     },
 
 
     props: {
 
+        label: {
+
+            default: 'value'
+
+        },
         allowNew: {
 
             default: true
@@ -724,6 +739,11 @@ exports.default = {
     },
 
     computed: {
+        showDropdown: function showDropdown() {
+
+            console.log('show dropdown?', this.filteredTags.length, this.inFocus, !!(this.filteredTags.length && this.inFocus));
+            return !!(this.filteredTags.length && this.inFocus);
+        },
         inputIsSelected: function inputIsSelected() {
             var _this = this;
 
@@ -812,11 +832,6 @@ exports.default = {
 
             this.setSearchElementsWidth();
             this.resetOptionIndex();
-
-            if (_input) {
-
-                this.openDropdown();
-            }
         }
     },
 
@@ -841,8 +856,6 @@ exports.default = {
 
             var style = window.getComputedStyle(element);
 
-            console.log('padding:', element, key, style.getPropertyValue(key));
-
             return style.getPropertyValue(key);
         },
         setSearchElementsWidth: function setSearchElementsWidth() {
@@ -857,14 +870,7 @@ exports.default = {
             var paddingRight = parseFloat(this.getElementComputedStyle(searchElement, 'padding-right').slice(0, -2));
             var newWidth = searchWidth < placeholderWidth ? placeholderWidth : searchWidth;
 
-            newWidth = (newWidth > maxWidth ? maxWidth : newWidth) - (paddingLeft + paddingRight) + 'px';
-
-            console.log('input', this.input);
-            console.log('max width', maxWidth);
-            console.log('input width', searchWidth);
-            console.log('placeholder width', placeholderWidth);
-            console.log('padding', paddingLeft, paddingRight);
-            console.log('final width', newWidth);
+            newWidth = (newWidth > maxWidth ? maxWidth : newWidth) + 'px';
 
             this.$els.search.style.width = newWidth;
         },
@@ -896,21 +902,21 @@ exports.default = {
 
             document.addEventListener('focusin', function (e) {
 
-                var search = _this5.$els.search;
+                var container = _this5.$el;
                 var target = e.target;
 
-                if (target == search) {
+                if (target == container || container.contains(target)) {
 
-                    _this5.openDropdown();
+                    _this5.inFocus = true;
                 } else {
 
-                    _this5.closeDropdown();
+                    _this5.inFocus = false;
                 }
             });
 
             document.addEventListener('click', function (e) {
 
-                _this5.closeDropdown();
+                _this5.inFocus = false;
             });
         },
         stringifyTagValue: function stringifyTagValue(tag) {
@@ -1123,37 +1129,37 @@ exports.default = {
 };
 
 /***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(20), __esModule: true };
-
-/***/ }),
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(21);
-module.exports = __webpack_require__(4).Object.assign;
-
+module.exports = { "default": __webpack_require__(21), __esModule: true };
 
 /***/ }),
 /* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// 19.1.3.1 Object.assign(target, source)
-var $export = __webpack_require__(22);
-
-$export($export.S + $export.F, 'Object', { assign: __webpack_require__(32) });
+__webpack_require__(22);
+module.exports = __webpack_require__(4).Object.assign;
 
 
 /***/ }),
 /* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
+// 19.1.3.1 Object.assign(target, source)
+var $export = __webpack_require__(23);
+
+$export($export.S + $export.F, 'Object', { assign: __webpack_require__(33) });
+
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var global = __webpack_require__(0);
 var core = __webpack_require__(4);
-var ctx = __webpack_require__(23);
-var hide = __webpack_require__(25);
+var ctx = __webpack_require__(24);
+var hide = __webpack_require__(26);
 var PROTOTYPE = 'prototype';
 
 var $export = function (type, name, source) {
@@ -1214,11 +1220,11 @@ module.exports = $export;
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // optional / simple context binding
-var aFunction = __webpack_require__(24);
+var aFunction = __webpack_require__(25);
 module.exports = function (fn, that, length) {
   aFunction(fn);
   if (that === undefined) return fn;
@@ -1240,7 +1246,7 @@ module.exports = function (fn, that, length) {
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports) {
 
 module.exports = function (it) {
@@ -1250,11 +1256,11 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var dP = __webpack_require__(26);
-var createDesc = __webpack_require__(31);
+var dP = __webpack_require__(27);
+var createDesc = __webpack_require__(32);
 module.exports = __webpack_require__(2) ? function (object, key, value) {
   return dP.f(object, key, createDesc(1, value));
 } : function (object, key, value) {
@@ -1264,12 +1270,12 @@ module.exports = __webpack_require__(2) ? function (object, key, value) {
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var anObject = __webpack_require__(27);
-var IE8_DOM_DEFINE = __webpack_require__(28);
-var toPrimitive = __webpack_require__(30);
+var anObject = __webpack_require__(28);
+var IE8_DOM_DEFINE = __webpack_require__(29);
+var toPrimitive = __webpack_require__(31);
 var dP = Object.defineProperty;
 
 exports.f = __webpack_require__(2) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
@@ -1286,7 +1292,7 @@ exports.f = __webpack_require__(2) ? Object.defineProperty : function defineProp
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(1);
@@ -1297,16 +1303,16 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = !__webpack_require__(2) && !__webpack_require__(3)(function () {
-  return Object.defineProperty(__webpack_require__(29)('div'), 'a', { get: function () { return 7; } }).a != 7;
+  return Object.defineProperty(__webpack_require__(30)('div'), 'a', { get: function () { return 7; } }).a != 7;
 });
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(1);
@@ -1319,7 +1325,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.1 ToPrimitive(input [, PreferredType])
@@ -1337,7 +1343,7 @@ module.exports = function (it, S) {
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports) {
 
 module.exports = function (bitmap, value) {
@@ -1351,16 +1357,16 @@ module.exports = function (bitmap, value) {
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // 19.1.2.1 Object.assign(target, source, ...)
-var getKeys = __webpack_require__(33);
-var gOPS = __webpack_require__(44);
-var pIE = __webpack_require__(45);
-var toObject = __webpack_require__(46);
+var getKeys = __webpack_require__(34);
+var gOPS = __webpack_require__(45);
+var pIE = __webpack_require__(46);
+var toObject = __webpack_require__(47);
 var IObject = __webpack_require__(6);
 var $assign = Object.assign;
 
@@ -1392,12 +1398,12 @@ module.exports = !$assign || __webpack_require__(3)(function () {
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
-var $keys = __webpack_require__(34);
-var enumBugKeys = __webpack_require__(43);
+var $keys = __webpack_require__(35);
+var enumBugKeys = __webpack_require__(44);
 
 module.exports = Object.keys || function keys(O) {
   return $keys(O, enumBugKeys);
@@ -1405,13 +1411,13 @@ module.exports = Object.keys || function keys(O) {
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var has = __webpack_require__(35);
+var has = __webpack_require__(36);
 var toIObject = __webpack_require__(5);
-var arrayIndexOf = __webpack_require__(37)(false);
-var IE_PROTO = __webpack_require__(40)('IE_PROTO');
+var arrayIndexOf = __webpack_require__(38)(false);
+var IE_PROTO = __webpack_require__(41)('IE_PROTO');
 
 module.exports = function (object, names) {
   var O = toIObject(object);
@@ -1428,7 +1434,7 @@ module.exports = function (object, names) {
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports) {
 
 var hasOwnProperty = {}.hasOwnProperty;
@@ -1438,7 +1444,7 @@ module.exports = function (it, key) {
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -1449,14 +1455,14 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // false -> Array#indexOf
 // true  -> Array#includes
 var toIObject = __webpack_require__(5);
-var toLength = __webpack_require__(38);
-var toAbsoluteIndex = __webpack_require__(39);
+var toLength = __webpack_require__(39);
+var toAbsoluteIndex = __webpack_require__(40);
 module.exports = function (IS_INCLUDES) {
   return function ($this, el, fromIndex) {
     var O = toIObject($this);
@@ -1478,7 +1484,7 @@ module.exports = function (IS_INCLUDES) {
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.15 ToLength
@@ -1490,7 +1496,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var toInteger = __webpack_require__(8);
@@ -1503,18 +1509,18 @@ module.exports = function (index, length) {
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var shared = __webpack_require__(41)('keys');
-var uid = __webpack_require__(42);
+var shared = __webpack_require__(42)('keys');
+var uid = __webpack_require__(43);
 module.exports = function (key) {
   return shared[key] || (shared[key] = uid(key));
 };
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(0);
@@ -1526,7 +1532,7 @@ module.exports = function (key) {
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports) {
 
 var id = 0;
@@ -1537,7 +1543,7 @@ module.exports = function (key) {
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 // IE 8- don't enum bug keys
@@ -1547,21 +1553,21 @@ module.exports = (
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports) {
 
 exports.f = Object.getOwnPropertySymbols;
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 exports.f = {}.propertyIsEnumerable;
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.13 ToObject(argument)
@@ -1572,7 +1578,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1585,6 +1591,11 @@ exports.default = {
 
     props: {
 
+        label: {
+
+            default: 'value'
+
+        },
         tag: {
 
             default: function _default() {}
@@ -1598,13 +1609,28 @@ exports.default = {
 
             if (this.tag.new) {
 
-                return "Add \"" + this.tag.value + "\"";
+                return 'Add "' + this.getLabel() + '"';
             } else if (this.tag.selected) {
 
-                return "\"" + this.tag.value + "\" is already selected";
+                return '"' + this.getLabel() + '" is already selected';
             } else if (this.tag.invalid) {
 
-                return "No results matches \"" + this.tag.value + "\"";
+                return 'No results matches "' + this.getLabel() + '"';
+            } else {
+
+                return this.getLabel();
+            }
+        }
+    },
+
+    methods: {
+        getLabel: function getLabel() {
+
+            var label = this.tag[this.label];
+
+            if (typeof label !== 'undefined') {
+
+                return label;
             } else {
 
                 return this.tag.value;
@@ -1615,13 +1641,13 @@ exports.default = {
 };
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports) {
 
 module.exports = "\n\n\n<div class=\"ez-tag__option\">{{display}}</div>\n\n";
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1634,6 +1660,11 @@ exports.default = {
 
     props: {
 
+        label: {
+
+            default: 'value'
+
+        },
         tag: {
 
             default: function _default() {}
@@ -1657,22 +1688,34 @@ exports.default = {
         unselect: function unselect(tag) {
 
             this.$emit('unselect', tag);
+        },
+        getLabel: function getLabel() {
+
+            var label = this.tag[this.label];
+
+            if (typeof label !== 'undefined') {
+
+                return label;
+            } else {
+
+                return this.tag.value;
+            }
         }
     }
 
 };
 
 /***/ }),
-/* 50 */
-/***/ (function(module, exports) {
-
-module.exports = "\n\n<div class=\"ez-tag__item\" :style=\"style\">\n    <span class=\"ez-tag__item-text\">{{tag.value}}</span>\n    <span v-on:click=\"unselect(tag)\" class=\"ez-tag__item-cross\">\n        <span class=\"ez-tag__item-cross-line\" :style=\"{ background: style.color }\"></span>\n        <span class=\"ez-tag__item-cross-line\" :style=\"{ background: style.color }\"></span>\n    </span>\n</div>\n\n";
-
-/***/ }),
 /* 51 */
 /***/ (function(module, exports) {
 
-module.exports = "\n\n<div v-on:click.stop=\"focusInput\" class=\"ez-tag\">\n    <div v-on:keyup.enter=\"selectTagFromOption\" v-on:keydown.down=\"nextOption\" v-on:keydown.up=\"prevOption\"\n         class=\"ez-tag__input-container\">\n        <div class=\"ez-tag__items\">\n            <tag-selected v-for=\"tag in selectedTags\" v-on:unselect=\"unselectTag\" :tag=\"tag\" track-by=\"$index\"></tag-selected>\n            <input v-el:search v-on:keydown.8=\"unselectLastTag\" v-model=\"input\" tabindex=\"0\" type=\"text\" class=\"ez-tag__input\" :placeholder=\"placeholder\">\n            <div v-el:placeholder-measurement class=\"ez-tag__input-measure\">{{placeholder}}</div>\n            <div v-el:search-measurement class=\"ez-tag__input-measure\">{{input}}</div>\n        </div>\n        <div v-if=\"selectedTags.length\" class=\"ez-tag__clear-items\">\n            <span v-on:click=\"clearSelected\" class=\"ez-tag__item-cross\">\n                <span class=\"ez-tag__item-cross-line\"></span>\n                <span class=\"ez-tag__item-cross-line\"></span>\n            </span>\n        </div>\n    </div>\n    <div v-if=\"filteredTags.length\" v-el:dropdown class=\"ez-tag__dropdown\">\n        <div class=\"ez-tag__option-container\">\n            <tag-option v-for=\"tag in filteredTags\" v-on:click=\"selectTag(tag)\" :tag=\"tag\" track-by=\"$index\" :class=\"{'ez-tag__option--active': activeOptionIndex == $index}\" track-by=\"$index\"></tag-option>\n        </div>\n        <div v-if=\"filteredTags.length\" v-on:click.stop=\"closeDropdown\" class=\"ez-tag__close\">\n            Close\n        </div>\n    </div>\n</div>\n\n";
+module.exports = "\n\n<div class=\"ez-tag__item\" :style=\"style\">\n    <span class=\"ez-tag__item-text\">{{getLabel()}}</span>\n    <span v-on:click=\"unselect(tag)\" class=\"ez-tag__item-cross\">\n        <span class=\"ez-tag__item-cross-line\" :style=\"{ background: style.color }\"></span>\n        <span class=\"ez-tag__item-cross-line\" :style=\"{ background: style.color }\"></span>\n    </span>\n</div>\n\n";
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports) {
+
+module.exports = "\n\n<div v-on:click.stop=\"focusInput\" :class=\"{'ez-tag--focus': inFocus}\" class=\"ez-tag\">\n    <div v-on:keyup.enter=\"selectTagFromOption\" v-on:keydown.down=\"nextOption\" v-on:keydown.up=\"prevOption\" :class=\"{'ez-tag__input-container--open': showDropdown}\" class=\"ez-tag__input-container\">\n        <div class=\"ez-tag__items\">\n            <tag-selected v-for=\"tag in selectedTags\" v-on:unselect=\"unselectTag\" :tag=\"tag\" :label=\"label\" track-by=\"$index\"></tag-selected>\n            <input v-el:search v-on:keydown.8=\"unselectLastTag\" v-model=\"input\" tabindex=\"0\" type=\"text\" class=\"ez-tag__input\" :placeholder=\"placeholder\">\n            <div v-el:placeholder-measurement class=\"ez-tag__input-measure\">{{placeholder}}</div>\n            <div v-el:search-measurement class=\"ez-tag__input-measure\">{{input}}</div>\n        </div>\n        <div v-if=\"selectedTags.length\" class=\"ez-tag__clear-items\">\n            <span v-on:click.stop=\"clearSelected\" class=\"ez-tag__item-cross\">\n                <span class=\"ez-tag__item-cross-line\"></span>\n                <span class=\"ez-tag__item-cross-line\"></span>\n            </span>\n        </div>\n    </div>\n    <div v-if=\"showDropdown\" v-el:dropdown class=\"ez-tag__dropdown\">\n        <div class=\"ez-tag__option-container\">\n            <tag-option v-for=\"tag in filteredTags\" v-on:click=\"selectTag(tag)\" :tag=\"tag\" :label=\"label\" track-by=\"$index\" :class=\"{'ez-tag__option--active': activeOptionIndex == $index}\" track-by=\"$index\"></tag-option>\n        </div>\n        <div v-if=\"1<1\" v-on:click.stop=\"closeDropdown\" class=\"ez-tag__close\">\n            Close\n        </div>\n    </div>\n</div>\n\n";
 
 /***/ })
 /******/ ]);

@@ -11,6 +11,11 @@
 
         props: {
 
+            label: {
+
+                default: 'value'
+
+            },
             tag: {
 
                 default: () => {}
@@ -25,19 +30,39 @@
 
                 if (this.tag.new) {
 
-                    return `Add "${this.tag.value}"`;
+                    return `Add "${this.getLabel()}"`;
 
                 } else if (this.tag.selected) {
 
-                    return `"${this.tag.value}" is already selected`;
+                    return `"${this.getLabel()}" is already selected`;
 
                 } else if (this.tag.invalid) {
 
-                    return `No results matches "${this.tag.value}"`;
+                    return `No results matches "${this.getLabel()}"`;
 
                 } else {
 
-                    return this.tag.value;
+                    return this.getLabel();
+
+                }
+
+            }
+
+        },
+
+        methods: {
+
+            getLabel() {
+
+                const label = this.tag[this.label];
+
+                if (typeof label !== 'undefined') {
+
+                    return label;
+
+                } else {
+
+                    return this.tag.value
 
                 }
 

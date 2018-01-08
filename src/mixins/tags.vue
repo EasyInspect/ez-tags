@@ -1,26 +1,25 @@
 <template>
 
-    <div v-on:click.stop="focusInput" class="ez-tag">
-        <div v-on:keyup.enter="selectTagFromOption" v-on:keydown.down="nextOption" v-on:keydown.up="prevOption"
-             class="ez-tag__input-container">
+    <div v-on:click.stop="focusInput" :class="{'ez-tag--focus': inFocus}" class="ez-tag">
+        <div v-on:keyup.enter="selectTagFromOption" v-on:keydown.down="nextOption" v-on:keydown.up="prevOption" :class="{'ez-tag__input-container--open': showDropdown}" class="ez-tag__input-container">
             <div class="ez-tag__items">
-                <tag-selected v-for="tag in selectedTags" v-on:unselect="unselectTag" :tag="tag" track-by="$index"></tag-selected>
+                <tag-selected v-for="tag in selectedTags" v-on:unselect="unselectTag" :tag="tag" :label="label" track-by="$index"></tag-selected>
                 <input v-el:search v-on:keydown.8="unselectLastTag" v-model="input" tabindex="0" type="text" class="ez-tag__input" :placeholder="placeholder">
                 <div v-el:placeholder-measurement class="ez-tag__input-measure">{{placeholder}}</div>
                 <div v-el:search-measurement class="ez-tag__input-measure">{{input}}</div>
             </div>
             <div v-if="selectedTags.length" class="ez-tag__clear-items">
-                <span v-on:click="clearSelected" class="ez-tag__item-cross">
+                <span v-on:click.stop="clearSelected" class="ez-tag__item-cross">
                     <span class="ez-tag__item-cross-line"></span>
                     <span class="ez-tag__item-cross-line"></span>
                 </span>
             </div>
         </div>
-        <div v-if="filteredTags.length" v-el:dropdown class="ez-tag__dropdown">
+        <div v-if="showDropdown" v-el:dropdown class="ez-tag__dropdown">
             <div class="ez-tag__option-container">
-                <tag-option v-for="tag in filteredTags" v-on:click="selectTag(tag)" :tag="tag" track-by="$index" :class="{'ez-tag__option--active': activeOptionIndex == $index}" track-by="$index"></tag-option>
+                <tag-option v-for="tag in filteredTags" v-on:click="selectTag(tag)" :tag="tag" :label="label" track-by="$index" :class="{'ez-tag__option--active': activeOptionIndex == $index}" track-by="$index"></tag-option>
             </div>
-            <div v-if="filteredTags.length" v-on:click.stop="closeDropdown" class="ez-tag__close">
+            <div v-if="1<1" v-on:click.stop="closeDropdown" class="ez-tag__close">
                 Close
             </div>
         </div>
@@ -31,8 +30,12 @@
 <style lang="sass-loader">
 
     .ez-tag {
-        border-radius: 3px;
         position: relative;
+        box-sizing: border-box;
+        cursor: text;
+    }
+
+    .ez-tag * {
         box-sizing: border-box;
     }
 
@@ -52,10 +55,26 @@
         margin: 5px 10px 10px 10px;
     }
 
+    .ez-tag--focus .ez-tag__input-container {
+        outline: 0;
+        border-color: #66afe9;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+    }
+
     .ez-tag__input-container {
-        border: 1px solid #dedede;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
         padding: 10px 10px 5px 10px;
         display: flex;
+    }
+
+    .ez-tag__input-container--focus {
+
+    }
+    .ez-tag__input-container--open {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
     }
 
     .ez-tag__display-container {
@@ -110,7 +129,6 @@
         height: 2em;
         width: 2px;
         background-color: #333;
-        top: 0.75em;
         left: 1em;
         cursor: pointer;
     }
@@ -143,16 +161,23 @@
         white-space: nowrap;
     }
 
+    .ez-tag--focus .ez-tag__dropdown {
+        outline: 0;
+        border-color: #66afe9;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    }
+
     .ez-tag__dropdown {
         position: absolute;
         left: 0;
         top: 100%;
         width: 100%;
-        border: 1px solid #dedede;
-        border-top: none;
         background: white;
-        display: none;
-        width: calc(100% - 2px);
+        width: 100%;
+        border: 1px solid #ccc;
+        border-top: none;
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
     }
 
     .ez-tag__option-container {
@@ -163,7 +188,7 @@
     .ez-tag__close {
         padding: 10px;
         text-align: center;
-        border-top: 1px solid #dedede;
+        border-top: 1px solid #ccc;
         cursor: pointer;
         transition: all 0.150s;
     }
@@ -191,7 +216,7 @@
     .ez-tag__footer {
         padding: 5px 10px;
         text-align: right;
-        border-top: 1px solid #dedede;
+        border-top: 1px solid #ccc;
     }
 
 </style>
@@ -210,13 +235,19 @@
             return {
                 input: '',
                 selectedTags: [],
-                activeOptionIndex: 0
+                activeOptionIndex: 0,
+                inFocus: false
             }
 
         },
 
         props: {
 
+            label: {
+
+                default: 'value'
+
+            },
             allowNew: {
 
                 default: true
@@ -242,6 +273,12 @@
 
         computed: {
 
+            showDropdown() {
+
+                console.log('show dropdown?', this.filteredTags.length, this.inFocus, !!(this.filteredTags.length && this.inFocus));
+                return !!(this.filteredTags.length && this.inFocus)
+
+            },
             inputIsSelected() {
 
                 return !!this.selectedTags.find(tag => tag.value == this.input);
@@ -333,12 +370,6 @@
                 this.setSearchElementsWidth();
                 this.resetOptionIndex();
 
-                if (input) {
-
-                    this.openDropdown();
-
-                }
-
             },
 
         },
@@ -368,8 +399,6 @@
 
                 const style = window.getComputedStyle(element);
 
-                console.log('padding:', element, key, style.getPropertyValue(key));
-
                 return style.getPropertyValue(key);
 
             },
@@ -385,18 +414,7 @@
                 const paddingRight          = parseFloat(this.getElementComputedStyle(searchElement, 'padding-right').slice(0, -2));
                 let newWidth                = searchWidth < placeholderWidth ? placeholderWidth : searchWidth;
 
-                newWidth = (newWidth > maxWidth ? maxWidth : newWidth) - (paddingLeft + paddingRight) + 'px';
-
-                // TODO Remove padding left + padding right from final width
-                // call this function on window resize aswell
-                // add cross to clear all
-
-                console.log('input', this.input);
-                console.log('max width', maxWidth);
-                console.log('input width', searchWidth);
-                console.log('placeholder width', placeholderWidth);
-                console.log('padding', paddingLeft, paddingRight);
-                console.log('final width', newWidth);
+                newWidth = (newWidth > maxWidth ? maxWidth : newWidth) + 'px';
 
                 this.$els.search.style.width = newWidth;
 
@@ -431,16 +449,16 @@
 
                 document.addEventListener('focusin', e => {
 
-                    const search = this.$els.search;
-                    const target = e.target;
+                    const container = this.$el;
+                    const target    = e.target;
 
-                    if (target == search) {
+                    if (target == container || container.contains(target)) {
 
-                        this.openDropdown();
+                        this.inFocus = true;
 
                     } else {
 
-                        this.closeDropdown();
+                        this.inFocus = false;
 
                     }
 
@@ -448,7 +466,7 @@
 
                 document.addEventListener('click', e => {
 
-                    this.closeDropdown();
+                    this.inFocus = false;
 
                 });
 

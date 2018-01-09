@@ -25,8 +25,10 @@ module.exports = {
                     use: [{
                         loader: 'css-loader',
                         options: {
-                            minimize: true
+                            minimize: false
                         }
+                    }, {
+                        loader: 'postcss-loader'
                     }, {
                         loader: 'sass-loader'
                     }]

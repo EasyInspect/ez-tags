@@ -75,12 +75,14 @@
   &__item-text {
     display: inline-block;
     vertical-align: bottom;
+    word-break: break-word;
   }
 
   &__item-cross {
     position: absolute;
     right: 0;
     top: 5px;
+    padding-top: 1em;
     font-size: 5px;
     width: 3em;
     height: 3em;

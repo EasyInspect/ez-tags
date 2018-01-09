@@ -3,7 +3,7 @@
     <div v-on:click.stop="focusInput" :class="{'ez-tag--focus': inFocus}" class="ez-tag">
         <div v-on:keyup.enter="selectTagFromOption" v-on:keydown.down="nextOption" v-on:keydown.up="prevOption" :class="{'ez-tag__input-container--open': showDropdown}" class="ez-tag__input-container">
             <div class="ez-tag__items">
-                <tag-selected v-for="tag in selectedTags" v-on:unselect="unselectTag" :tag="tag" :label="label" track-by="$index"></tag-selected>
+                <ez-tags-selected v-for="tag in selectedTags" v-on:unselect="unselectTag" :tag="tag" :label="label" track-by="$index"></ez-tags-selected>
                 <input v-el:search v-on:keydown.8="unselectLastTag" v-model="input" tabindex="0" type="text" class="ez-tag__input" :placeholder="placeholder">
                 <div v-el:placeholder-measurement class="ez-tag__input-measure">{{placeholder}}</div>
                 <div v-el:search-measurement class="ez-tag__input-measure">{{input}}</div>
@@ -17,7 +17,7 @@
         </div>
         <div v-if="showDropdown" v-el:dropdown class="ez-tag__dropdown">
             <div class="ez-tag__option-container">
-                <tag-option v-for="tag in filteredTags" v-on:click="selectTag(tag)" :tag="tag" :label="label" track-by="$index" :class="{'ez-tag__option--active': activeOptionIndex == $index}" track-by="$index"></tag-option>
+                <ez-tags-option v-for="tag in filteredTags" v-on:click="selectTag(tag)" :tag="tag" :label="label" track-by="$index" :class="{'ez-tag__option--active': activeOptionIndex == $index}" track-by="$index"></ez-tags-option>
             </div>
             <div v-if="1<1" v-on:click.stop="closeDropdown" class="ez-tag__close">
                 Close
@@ -29,12 +29,12 @@
 
 <script>
 
-    import TagOption from './option.vue'
-    import TagSelected from './selected.vue'
+    import EzTagsOption from './option.vue'
+    import EzTagsSelected from './selected.vue'
 
     export default {
 
-        components: {TagOption, TagSelected},
+        components: { EzTagsOption, EzTagsSelected },
 
         data() {
 

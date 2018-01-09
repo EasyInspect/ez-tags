@@ -27,7 +27,12 @@ module.exports = merge(common, {
     plugins: [
         new UglifyJsPlugin({
             uglifyOptions: {
-                compress: true
+                compress: {
+                    drop_console: true
+                },
+                output: {
+                    comments: false,
+                }
             }
         })
     ]

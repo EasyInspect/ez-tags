@@ -81,7 +81,6 @@
 
             showDropdown() {
 
-                console.log('show dropdown?', this.filteredTags.length, this.inFocus, !!(this.filteredTags.length && this.inFocus));
                 return !!(this.filteredTags.length && this.inFocus)
 
             },
@@ -253,17 +252,29 @@
             },
             addFocusListeners() {
 
-                document.addEventListener('focusin', e => {
+                this.$el.addEventListener('focusin', e => {
 
+                    console.log('in', e.target, e.relatedTarget);
+                    this.inFocus = true;
+
+                });
+
+                this.$el.addEventListener('focusout', e => {
+
+                    console.log('out', e.target, e.relatedTarget);
+
+                    const body      = document.body;
                     const container = this.$el;
-                    const target    = e.target;
+                    const target    = e.relatedTarget;
 
-                    if (target == container || container.contains(target)) {
+                    if (!target || target == body || target == container || container.contains(target)) {
 
+                        console.log('-- but still in');
                         this.inFocus = true;
 
                     } else {
 
+                        console.log('-- still out');
                         this.inFocus = false;
 
                     }
@@ -272,6 +283,7 @@
 
                 document.addEventListener('click', e => {
 
+                    console.log('click out', e.target);
                     this.inFocus = false;
 
                 });
@@ -424,6 +436,7 @@
             },
             selectTag(tag) {
 
+                console.log('select', tag);
                 if (this.canSelectTag(tag)) {
 
                     this.selectedTags.push(tag);

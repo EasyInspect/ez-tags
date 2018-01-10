@@ -230,28 +230,37 @@ if (false) {(function () {  module.hot.accept()
 
 /***/ }),
 /* 11 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__scss_main_scss__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__scss_main_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__scss_main_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_tags_vue__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_tags_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__mixins_tags_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_option_vue__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_option_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__mixins_option_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_selected_vue__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mixins_selected_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__mixins_selected_vue__);
-/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "EzTags", function() { return __WEBPACK_IMPORTED_MODULE_1__mixins_tags_vue___default.a; });
-/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "EzTagsOption", function() { return __WEBPACK_IMPORTED_MODULE_2__mixins_option_vue___default.a; });
-/* harmony reexport (default from non-hamory) */ __webpack_require__.d(__webpack_exports__, "EzTagsSelected", function() { return __WEBPACK_IMPORTED_MODULE_3__mixins_selected_vue___default.a; });
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.EzTagsSelected = exports.EzTagsOption = exports.EzTags = undefined;
 
+var _main = __webpack_require__(12);
 
+var _main2 = _interopRequireDefault(_main);
 
+var _tags = __webpack_require__(13);
 
+var _tags2 = _interopRequireDefault(_tags);
 
+var _option = __webpack_require__(9);
+
+var _option2 = _interopRequireDefault(_option);
+
+var _selected = __webpack_require__(10);
+
+var _selected2 = _interopRequireDefault(_selected);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.EzTags = _tags2.default;
+exports.EzTagsOption = _option2.default;
+exports.EzTagsSelected = _selected2.default;
 
 /***/ }),
 /* 12 */

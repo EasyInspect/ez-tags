@@ -16,7 +16,7 @@
             </div>
         </div>
         <div v-if="showDropdown" v-el:dropdown class="ez-tag__dropdown">
-            <div class="ez-tag__option-container">
+            <div class="ez-tag__option-container" tabindex="-1">
                 <ez-tags-option v-for="tag in filteredTags" v-on:click="selectTag(tag)" :tag="tag" :label="label" track-by="$index" :class="{'ez-tag__option--active': activeOptionIndex == $index}" track-by="$index"></ez-tags-option>
             </div>
             <div v-if="1<1" v-on:click.stop="closeDropdown" class="ez-tag__close">
@@ -215,8 +215,6 @@
                 const maxWidth              = searchElement.parentElement.clientWidth;
                 const placeholderWidth      = placeholderElement.clientWidth;
                 const searchWidth           = measurementElement.clientWidth;
-                const paddingLeft           = parseFloat(this.getElementComputedStyle(searchElement, 'padding-left').slice(0, -2));
-                const paddingRight          = parseFloat(this.getElementComputedStyle(searchElement, 'padding-right').slice(0, -2));
                 let newWidth                = searchWidth < placeholderWidth ? placeholderWidth : searchWidth;
 
                 newWidth = (newWidth > maxWidth ? maxWidth : newWidth) + 'px';
@@ -254,14 +252,11 @@
 
                 this.$el.addEventListener('focusin', e => {
 
-                    console.log('in', e.target, e.relatedTarget);
                     this.inFocus = true;
 
                 });
 
                 this.$el.addEventListener('focusout', e => {
-
-                    console.log('out', e.target, e.relatedTarget);
 
                     const body      = document.body;
                     const container = this.$el;
@@ -269,12 +264,10 @@
 
                     if (!target || target == body || target == container || container.contains(target)) {
 
-                        console.log('-- but still in');
                         this.inFocus = true;
 
                     } else {
 
-                        console.log('-- still out');
                         this.inFocus = false;
 
                     }
@@ -283,7 +276,6 @@
 
                 document.addEventListener('click', e => {
 
-                    console.log('click out', e.target);
                     this.inFocus = false;
 
                 });
@@ -294,48 +286,6 @@
                 return Object.assign({}, tag, {
                     value: tag.value.toString()
                 })
-
-            },
-            closeDropdown(e) {
-
-                const dropdown = this.$els.dropdown;
-
-                if (dropdown) {
-
-                    dropdown.style.display = 'none';
-
-                    this.$nextTick(() => {
-
-                        if (dropdown.style.display == 'none') {
-
-                            this.resetOptionIndex();
-
-                        }
-
-                    })
-
-                }
-
-            },
-            openDropdown() {
-
-                const dropdown = this.$els.dropdown;
-
-                if (dropdown) {
-
-                    dropdown.style.display = 'block';
-
-                    this.$nextTick(() => {
-
-                        if (dropdown.style.display != 'none') {
-
-                            this.checkOptionIsInView()
-
-                        }
-
-                    })
-
-                }
 
             },
             clearSelected() {
@@ -436,7 +386,6 @@
             },
             selectTag(tag) {
 
-                console.log('select', tag);
                 if (this.canSelectTag(tag)) {
 
                     this.selectedTags.push(tag);

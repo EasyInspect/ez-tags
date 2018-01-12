@@ -1,6 +1,6 @@
 {
   "name": "@easyinspect/ez-tags",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Tag selection",
   "main": "dist/index.js",
   "author": "EasyInspect ApS",

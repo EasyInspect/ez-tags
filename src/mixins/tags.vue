@@ -209,6 +209,8 @@
             },
             setSearchElementsWidth() {
 
+                this.setMeasurementFontSize();
+
                 const searchElement         = this.$els.search;
                 const placeholderElement    = this.$els.placeholderMeasurement;
                 const measurementElement    = this.$els.searchMeasurement;
@@ -221,6 +223,17 @@
 
                 this.$els.search.style.width = newWidth;
 
+            },
+            setMeasurementFontSize() {
+
+                const searchElement         = this.$els.search;
+                const measurementElements   = document.getElementsByClassName('ez-tag__input-measure');
+                const searchFontSize        = this.getElementComputedStyle(searchElement, 'font-size');
+                const measureFontSize       = this.getElementComputedStyle(measurementElements[0], 'font-size');
+
+                console.log('search font size', searchFontSize);
+                console.log('measure font size', measureFontSize);
+                
             },
             removeDuplicates(array, key) {
 

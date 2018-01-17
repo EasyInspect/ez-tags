@@ -116,6 +116,7 @@
   &__input {
     border: none;
     padding: 5px 5px 10px 5px;
+    font-size: inherit;
   }
 
   &__input:focus {
@@ -127,6 +128,7 @@
     visibility: hidden;
     display: inline-block;
     white-space: nowrap;
+    font-size: inherit;
   }
 
   &--focus &__dropdown {

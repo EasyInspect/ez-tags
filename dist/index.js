@@ -480,6 +480,10 @@ exports.default = {
         this.setSearchElementsWidth();
         this.addFocusListeners();
     },
+    beforeDestroy: function beforeDestroy() {
+
+        window.removeEventListener('resize', this.setSearchElementsWidth);
+    },
 
 
     methods: {

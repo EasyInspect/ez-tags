@@ -88,7 +88,7 @@
     opacity: 1; }
   .ez-tag__input {
     border: none;
-    padding: 5px 5px 10px 5px;
+    padding: 5px 0 10px;
     font-size: inherit; }
   .ez-tag__input:focus {
     outline: none; }

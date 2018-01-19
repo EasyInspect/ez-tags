@@ -198,6 +198,12 @@
 
         },
 
+        beforeDestroy() {
+
+            window.removeEventListener('resize', this.setSearchElementsWidth);
+
+        },
+
         methods: {
 
             getElementComputedStyle(element, key) {

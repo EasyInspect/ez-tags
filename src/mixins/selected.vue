@@ -2,7 +2,7 @@
 
     <div class="ez-tag__item" :style="style">
         <span class="ez-tag__item-text">{{getLabel()}}</span>
-        <span v-on:click="unselect(tag)" class="ez-tag__item-cross">
+        <span v-if="!disabled" v-on:click="unselect(tag)" class="ez-tag__item-cross">
             <span class="ez-tag__item-cross-line" :style="{ background: style.color }"></span>
             <span class="ez-tag__item-cross-line" :style="{ background: style.color }"></span>
         </span>
@@ -16,9 +16,19 @@
 
         props: {
 
+            value: {
+
+                default: 'value'
+
+            },
             label: {
 
                 default: 'value'
+
+            },
+            disabled: {
+
+                default: false
 
             },
             tag: {
@@ -57,6 +67,21 @@
                 if (typeof label !== 'undefined') {
 
                     return label;
+
+                } else {
+
+                    return this.getValue()
+
+                }
+
+            },
+            getValue() {
+
+                const value = this.tag[this.value];
+
+                if (typeof value !== 'undefined') {
+
+                    return value;
 
                 } else {
 

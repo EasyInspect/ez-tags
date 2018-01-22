@@ -11,9 +11,19 @@
 
         props: {
 
+            value: {
+
+                default: 'value'
+
+            },
             label: {
 
                 default: 'value'
+
+            },
+            disabled: {
+
+                default: false
 
             },
             tag: {
@@ -59,6 +69,21 @@
                 if (typeof label !== 'undefined') {
 
                     return label;
+
+                } else {
+
+                    return this.getValue()
+
+                }
+
+            },
+            getValue() {
+
+                const value = this.tag[this.value];
+
+                if (typeof value !== 'undefined') {
+
+                    return value;
 
                 } else {
 

@@ -8,6 +8,15 @@
     box-sizing: border-box;
   }
 
+  &__no-tags{
+    opacity: 0.5;
+    margin-bottom: 5px;
+  }
+
+  &--disabled {
+    cursor: auto;
+  }
+
   &__pointer {
     margin: 5px 10px 10px 10px;
     cursor: pointer;

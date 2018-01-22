@@ -1,23 +1,24 @@
 <template>
 
-    <div v-on:click.stop="focusInput" :class="{'ez-tag--focus': inFocus}" class="ez-tag">
+    <div v-on:click.stop="focusInput" :class="{'ez-tag--focus': inFocus, 'ez-tag--disabled': disabled}" class="ez-tag">
         <div v-on:keyup.enter="selectTagFromOption" v-on:keydown.down="nextOption" v-on:keydown.up="prevOption" :class="{'ez-tag__input-container--open': showDropdown}" class="ez-tag__input-container">
             <div class="ez-tag__items">
-                <ez-tags-selected v-for="tag in selectedTags" v-on:unselect="unselectTag" :tag="tag" :label="label" track-by="$index"></ez-tags-selected>
-                <input v-el:search v-on:keydown.8="unselectLastTag" v-model="input" tabindex="0" type="text" class="ez-tag__input" :placeholder="placeholder">
+                <ez-tags-selected v-for="tag in selectedTags" v-on:unselect="unselectTag" :tag="tag" :label="label" :value="value" :disabled="disabled" track-by="$index"></ez-tags-selected>
+                <input v-show="!disabled" v-el:search v-on:keydown.8="unselectLastTag" v-model="input" tabindex="0" type="text" class="ez-tag__input" :placeholder="placeholder">
                 <div v-el:placeholder-measurement class="ez-tag__input-measure">{{placeholder}}</div>
                 <div v-el:search-measurement class="ez-tag__input-measure">{{input}}</div>
+                <div v-if="disabled && !selectedTags.length" class="ez-tag__no-tags">No tags</div>
             </div>
-            <div v-if="selectedTags.length" class="ez-tag__clear-items">
+            <div v-if="selectedTags.length && !disabled" class="ez-tag__clear-items">
                 <span v-on:click.stop="clearSelected" class="ez-tag__item-cross">
                     <span class="ez-tag__item-cross-line"></span>
                     <span class="ez-tag__item-cross-line"></span>
                 </span>
             </div>
         </div>
-        <div v-if="showDropdown" v-el:dropdown class="ez-tag__dropdown">
+        <div v-if="showDropdown && !disabled" v-el:dropdown class="ez-tag__dropdown">
             <div class="ez-tag__option-container" tabindex="-1">
-                <ez-tags-option v-for="tag in filteredTags" v-on:click="selectTag(tag)" :tag="tag" :label="label" track-by="$index" :class="{'ez-tag__option--active': activeOptionIndex == $index}" track-by="$index"></ez-tags-option>
+                <ez-tags-option v-for="tag in filteredTags" v-on:click="selectTag(tag)" :tag="tag" :label="label" :value="value" :disabled="disabled" track-by="$index" :class="{'ez-tag__option--active': activeOptionIndex == $index}" track-by="$index"></ez-tags-option>
             </div>
             <div v-if="1<1" v-on:click.stop="closeDropdown" class="ez-tag__close">
                 Close
@@ -49,6 +50,16 @@
 
         props: {
 
+            disabled: {
+
+                default: false
+
+            },
+            value: {
+
+                default: 'value'
+
+            },
             label: {
 
                 default: 'value'
@@ -57,6 +68,11 @@
             allowNew: {
 
                 default: true
+
+            },
+            asyncAdd: {
+
+                default: false
 
             },
             options: {
@@ -86,12 +102,12 @@
             },
             inputIsSelected() {
 
-                return !!this.selectedTags.find(tag => tag.value == this.input);
+                return !!this.selectedTags.find(tag => this.getTagValue(tag) == this.input);
 
             },
             inputExists() {
 
-                return !!this.allTags.find(tag => tag.value == this.input);
+                return !!this.allTags.find(tag => this.getTagValue(tag) == this.input);
 
             },
             allTags() {
@@ -103,7 +119,7 @@
 
                 const transformedData = this.options.map(this.stringifyTagValue);
 
-                return transformedData.filter(tag => !this.selectedTags.find(selected => selected.value == tag.value));
+                return transformedData.filter(tag => !this.selectedTags.find(selected => this.getTagValue(selected) == this.getTagValue(tag)));
 
             },
             filteredTags() {
@@ -115,7 +131,7 @@
                     if (this.inputIsSelected) {
 
                         options.push({
-                            value: this.input,
+                            [this.value]: this.input,
                             selected: true
                         })
 
@@ -124,14 +140,14 @@
                         if (this.allowNew) {
 
                             options.push({
-                                value: this.input,
+                                [this.value]: this.input,
                                 new: true
                             })
 
                         } else {
 
                             options.push({
-                                value: this.input,
+                                [this.value]: this.input,
                                 invalid: true
                             })
 
@@ -139,7 +155,7 @@
 
                     }
 
-                    options = options.concat(this.unselectedTags.filter(tag => tag.value.toString().includes(this.input)));
+                    options = options.concat(this.unselectedTags.filter(tag => this.getTagValue(tag).toString().includes(this.input)));
 
                 } else {
 
@@ -147,7 +163,7 @@
 
                 }
 
-                return this.removeDuplicates(options, 'value');
+                return this.removeDuplicates(options, this.value);
 
             }
 
@@ -215,8 +231,6 @@
             },
             setSearchElementsWidth() {
 
-                this.setMeasurementFontSize();
-
                 const searchElement         = this.$els.search;
                 const placeholderElement    = this.$els.placeholderMeasurement;
                 const measurementElement    = this.$els.searchMeasurement;
@@ -229,17 +243,6 @@
 
                 this.$els.search.style.width = newWidth;
 
-            },
-            setMeasurementFontSize() {
-
-                const searchElement         = this.$els.search;
-                const measurementElements   = document.getElementsByClassName('ez-tag__input-measure');
-                const searchFontSize        = this.getElementComputedStyle(searchElement, 'font-size');
-                const measureFontSize       = this.getElementComputedStyle(measurementElements[0], 'font-size');
-
-                console.log('search font size', searchFontSize);
-                console.log('measure font size', measureFontSize);
-                
             },
             removeDuplicates(array, key) {
 
@@ -303,7 +306,7 @@
             stringifyTagValue(tag) {
 
                 return Object.assign({}, tag, {
-                    value: tag.value.toString()
+                    [this.value]: this.getTagValue(tag).toString()
                 })
 
             },
@@ -375,7 +378,7 @@
             canSelectTag(tag) {
 
                 const whitespaceRegex   = /^\s*|\s*\Z|\s\B/g;
-                const value             = typeof tag.value == 'string' ? tag.value.replace(whitespaceRegex, '') : tag.value;
+                const value             = typeof this.getTagValue(tag) == 'string' ? this.getTagValue(tag).replace(whitespaceRegex, '') : this.getTagValue(tag);
                 const hasValue          = typeof value == 'number' ? true : !!value;
                 const isUnique          = !this.tagIsSelected(tag);
                 const isValid           = !tag.invalid;
@@ -407,9 +410,17 @@
 
                 if (this.canSelectTag(tag)) {
 
-                    this.selectedTags.push(tag);
+                    if (this.asyncAdd && tag.new) {
 
-                    if (this.input == tag.value) {
+                        this.$emit('add', tag);
+
+                    } else {
+
+                        this.selectedTags.push(tag);
+
+                    }
+
+                    if (this.input == this.getTagValue(tag)) {
 
                         this.input = '';
 
@@ -449,7 +460,7 @@
             },
             tagIsSelected(tag) {
 
-                return this.selectedTags.find(selected => selected.value == tag.value)
+                return this.selectedTags.find(selected => this.getTagValue(selected) == this.getTagValue(tag))
 
             },
             setOptionIndex(index) {
@@ -494,6 +505,36 @@
                 } else {
 
                     this.setOptionIndex(this.activeOptionIndex - 1);
+
+                }
+
+            },
+            getTagValue(tag) {
+
+                const value = tag[this.value];
+
+                if (typeof value !== 'undefined') {
+
+                    return value;
+
+                } else {
+
+                    return tag.value
+
+                }
+
+            },
+            getTagLabel(tag) {
+
+                const label = tag[this.label];
+
+                if (typeof label !== 'undefined') {
+
+                    return label;
+
+                } else {
+
+                    return this.getTagValue(tag)
 
                 }
 

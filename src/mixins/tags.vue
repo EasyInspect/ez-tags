@@ -1,10 +1,15 @@
 <template>
 
     <div v-on:click.stop="focusInput" :class="{'ez-tag--focus': inFocus, 'ez-tag--disabled': disabled}" class="ez-tag">
+        <div v-if="loading" class="ez-tag__loader">
+            <div class="ez-tag__loader-inner">
+                <span class="fa fa-spinner fa-spin"></span>
+            </div>
+        </div>
         <div v-on:keyup.enter="selectTagFromOption" v-on:keydown.down="nextOption" v-on:keydown.up="prevOption" :class="{'ez-tag__input-container--open': showDropdown}" class="ez-tag__input-container">
             <div class="ez-tag__items">
                 <ez-tags-selected v-for="tag in selectedTags" v-on:unselect="unselectTag" :tag="tag" :label="label" :value="value" :disabled="disabled" track-by="$index"></ez-tags-selected>
-                <input v-show="!disabled" v-el:search v-on:keydown.8="unselectLastTag" v-model="input" tabindex="0" type="text" class="ez-tag__input" :placeholder="placeholder">
+                <input v-show="!disabled" v-el:search v-on:keydown.8="unselectLastTag" v-model="input" :tabindex="loading ? -1 : 0" type="text" class="ez-tag__input" :placeholder="placeholder">
                 <div v-el:placeholder-measurement class="ez-tag__input-measure">{{placeholder}}</div>
                 <div v-el:search-measurement class="ez-tag__input-measure">{{input}}</div>
                 <div v-if="disabled && !selectedTags.length" class="ez-tag__no-tags">No tags</div>
@@ -50,6 +55,11 @@
 
         props: {
 
+            loading: {
+
+                default: false
+
+            },
             disabled: {
 
                 default: false
@@ -446,7 +456,11 @@
 
                 const search = this.$els.search;
 
-                search.focus();
+                if (!this.loading) {
+
+                    search.focus();
+
+                }
 
             },
             unselectLastTag(e) {

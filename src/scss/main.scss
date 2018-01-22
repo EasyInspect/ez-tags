@@ -17,6 +17,28 @@
     cursor: auto;
   }
 
+  &__loader {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.5);
+    z-index: 420;
+  }
+
+  &__loader-inner{
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    span {
+      position: absolute;
+      display: block;
+      left: calc(50% - 0.5em);
+      top: calc(50% - 0.5em);
+    }
+
+  }
+
   &__pointer {
     margin: 5px 10px 10px 10px;
     cursor: pointer;

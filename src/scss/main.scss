@@ -160,6 +160,9 @@
     display: inline-block;
     white-space: nowrap;
     font-size: inherit;
+    max-width: 100%;
+    left: 0;
+    top: 0;
   }
 
   &--focus &__dropdown {

@@ -55,6 +55,11 @@
 
         props: {
 
+            refreshOnPreview: {
+
+                default: true
+
+            },
             loading: {
 
                 default: false
@@ -196,10 +201,18 @@
                 this.checkOptionIsInView();
 
             },
+            preview() {
+
+                if (this.refreshOnPreview) {
+
+                    this.refresh();
+
+                }
+
+            },
             selected(tags) {
 
-                this.clearSelected();
-                this.selectTags(tags);
+                this.refresh();
 
             },
             selectedTags(tags) {
@@ -412,6 +425,17 @@
                 if (this.canSelectTag(tag)) {
 
                     this.selectedTags.push(tag);
+
+                }
+
+            },
+            refresh() {
+
+                this.clearSelected();
+
+                if (this.selected) {
+
+                    this.selectTags(this.selected);
 
                 }
 

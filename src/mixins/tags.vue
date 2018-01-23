@@ -188,6 +188,7 @@
             },
             selected(tags) {
 
+                this.clearSelected();
                 this.selectTags(tags);
 
             },
@@ -421,6 +422,8 @@
                 if (this.canSelectTag(tag)) {
 
                     if (this.asyncAdd && tag.new) {
+
+                        delete tag.new;
 
                         this.$emit('add', tag);
 

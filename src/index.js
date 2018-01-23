@@ -1,3 +1,6 @@
+//TODO
+// add an option to toggle dropdown when clicking on the search field (like select2)
+
 import style from './scss/main.scss'
 import tags from './mixins/tags.vue'
 import option from './mixins/option.vue'

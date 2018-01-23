@@ -1,6 +1,6 @@
 <template>
 
-    <div v-on:click.stop="focusInput" :class="{'ez-tag--focus': inFocus, 'ez-tag--disabled': disabled}" class="ez-tag">
+    <div v-on:click.stop="focusInput" :class="{'ez-tag--focus': inFocus, 'ez-tag--disabled': disabled, 'ez-tag--preview': preview}" class="ez-tag">
         <div v-if="loading" class="ez-tag__loader">
             <div class="ez-tag__loader-inner">
                 <span class="fa fa-spinner fa-spin"></span>
@@ -8,22 +8,22 @@
         </div>
         <div v-on:keyup.enter="selectTagFromOption" v-on:keydown.down="nextOption" v-on:keydown.up="prevOption" :class="{'ez-tag__input-container--open': showDropdown}" class="ez-tag__input-container">
             <div class="ez-tag__items">
-                <ez-tags-selected v-for="tag in selectedTags" v-on:unselect="unselectTag" :tag="tag" :label="label" :value="value" :disabled="disabled" track-by="$index"></ez-tags-selected>
-                <input v-show="!disabled" v-el:search v-on:keydown.8="unselectLastTag" v-model="input" :tabindex="loading ? -1 : 0" type="text" class="ez-tag__input" :placeholder="placeholder">
+                <ez-tags-selected v-for="tag in selectedTags" v-on:unselect="unselectTag" :tag="tag" :label="label" :value="value" :disabled="!isEnabled" track-by="$index"></ez-tags-selected>
+                <input v-show="isEnabled" v-el:search v-on:keydown.8="unselectLastTag" v-model="input" :tabindex="loading ? -1 : 0" type="text" class="ez-tag__input" :placeholder="placeholder">
                 <div v-el:placeholder-measurement class="ez-tag__input-measure">{{placeholder}}</div>
                 <div v-el:search-measurement class="ez-tag__input-measure">{{input}}</div>
-                <div v-if="disabled && !selectedTags.length" class="ez-tag__no-tags">No tags</div>
+                <div v-if="!isEnabled && !selectedTags.length" class="ez-tag__no-tags">No tags</div>
             </div>
-            <div v-if="selectedTags.length && !disabled" class="ez-tag__clear-items">
+            <div v-if="selectedTags.length && isEnabled" class="ez-tag__clear-items">
                 <span v-on:click.stop="clearSelected" class="ez-tag__item-cross">
                     <span class="ez-tag__item-cross-line"></span>
                     <span class="ez-tag__item-cross-line"></span>
                 </span>
             </div>
         </div>
-        <div v-if="showDropdown && !disabled" v-el:dropdown class="ez-tag__dropdown">
+        <div v-if="showDropdown && isEnabled" v-el:dropdown class="ez-tag__dropdown">
             <div class="ez-tag__option-container" tabindex="-1">
-                <ez-tags-option v-for="tag in filteredTags" v-on:click="selectTag(tag)" :tag="tag" :label="label" :value="value" :disabled="disabled" track-by="$index" :class="{'ez-tag__option--active': activeOptionIndex == $index}" track-by="$index"></ez-tags-option>
+                <ez-tags-option v-for="tag in filteredTags" v-on:click="selectTag(tag)" :tag="tag" :label="label" :value="value" :disabled="!isEnabled" track-by="$index" :class="{'ez-tag__option--active': activeOptionIndex == $index}" track-by="$index"></ez-tags-option>
             </div>
             <div v-if="1<1" v-on:click.stop="closeDropdown" class="ez-tag__close">
                 Close
@@ -75,6 +75,11 @@
                 default: 'value'
 
             },
+            preview: {
+
+                default: false
+
+            },
             allowNew: {
 
                 default: true
@@ -105,6 +110,11 @@
 
         computed: {
 
+            isEnabled() {
+
+                return !this.disabled && !this.preview
+
+            },
             showDropdown() {
 
                 return !!(this.filteredTags.length && this.inFocus)

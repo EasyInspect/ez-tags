@@ -17,6 +17,25 @@
     cursor: auto;
   }
 
+  &--preview {
+    cursor: auto;
+
+    .ez-tag__input-container {
+      box-shadow: none;
+      border: none;
+      padding: 0;
+    }
+
+    .ez-tag__item {
+      padding: 5px 10px;
+    }
+
+    .ez-tag__no-tags {
+      margin-bottom: 0;
+    }
+
+  }
+
   &__loader {
     position: absolute;
     width: 100%;
